@@ -1,0 +1,37 @@
+@charset "UTF-8";
+.navbar {
+  background-color: #000000;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+.navbar button {
+  width: 32px;
+  height: 32px;
+  background-color: black;
+  position: relative;
+  cursor: pointer;
+}
+.navbar button:before {
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  transition: 0.3s;
+}
+.navbar button:hover:before {
+  transform: scale(0.8);
+}
+.navbar .nav-btn-roll-up:before {
+  content: "−";
+}
+.navbar .nav-btn-full-screen:before {
+  content: "⃞";
+}
+.navbar .nav-btn-close:before {
+  content: "🞨";
+}
+
+/*# sourceMappingURL=Navbar.css.map */

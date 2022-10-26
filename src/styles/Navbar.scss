@@ -1,0 +1,45 @@
+.navbar{
+  background-color: #000000;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+
+  & button {
+    width: 32px;
+    height: 32px;
+    background-color: black;
+    position: relative;
+    cursor: pointer;
+    &:before{
+      color: #ffffff;
+      display: flex;
+      align-items:center;
+      justify-content: center;
+      font-size: 25px;
+      transition: 0.3s;
+    }
+    &:hover:before {
+      transform: scale(0.8);
+    }
+  }
+
+  .nav-btn-roll-up {
+    &:before{
+      content: "\2212";
+    }
+  }
+
+  .nav-btn-full-screen {
+    &:before{
+      content: "\20DE";
+    }
+  }
+
+  .nav-btn-close {
+    &:before{
+      content: "\1F7A8";
+    }
+  }
+
+}
