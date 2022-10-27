@@ -1,4 +1,6 @@
 @import "../components/navbar/Navbar.css";
+@import "../components/upBufferLine/UpBufferLine.css";
+
 html {
   box-sizing: border-box;
 }
