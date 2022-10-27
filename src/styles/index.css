@@ -1,12 +1,7 @@
 @import "../components/navbar/Navbar.css";
-<<<<<<< HEAD
 @import "../components/leftBufferLine/LeftBufferLine.css";
 @import "../components/upBufferLine/UpBufferLine.css";
-@import "../components/listUsers/ListUsers.css";
-=======
-@import "../components/BottomDocument/BottomDocument.css";
 
->>>>>>> caskey99
 html {
   box-sizing: border-box;
 }
