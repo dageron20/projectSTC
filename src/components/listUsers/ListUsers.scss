@@ -1,0 +1,133 @@
+.list-users {
+  display: flex;
+  flex-direction: column;
+  width: 304px;
+  height: 100%;
+
+  & .all-users {
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: 1px solid  #C8CACC;
+
+    & label {
+      font-style: normal;
+      font-weight: 600;
+      font-size: 15px;
+      line-height: 19px;
+    }
+
+    input {
+      &:checked+label:after {
+        top: 5px;
+        left: 20px;
+        width: 12px;
+        height: 7px;
+        border-left: 2px solid #FCFCFD;
+        border-bottom: 2px solid #FCFCFD;
+        -ms-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+      }
+    }
+  }
+
+  & .item-user {
+    display: flex;
+    flex-direction: row;
+    padding: 15px 0;
+    justify-content: space-between;
+    align-items: center;
+
+    &:hover {
+      background: #E6F6F1;
+    }
+
+    & .title-user {
+      display: flex;
+      flex-direction: column;
+
+      & .naming {
+        font-weight: 600;
+        font-size: 13px;
+        line-height: 16px;
+        color: rgba(40, 43, 45, 0.92);
+      }
+      & .job {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 16px;
+        color: rgba(40, 43, 45, 0.6);
+      }
+    }
+
+    & .counter-cycle {
+      width: 16px;
+      height: 16px;
+
+      margin-right: 16px;
+      background-color: #38A88F;
+      color: rgba(252, 252, 253, 0.92);
+      border-radius: 50%;
+
+      font-weight: 700;
+      font-size: 11px;
+      line-height: 16px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+  }
+}
+
+input[type="checkbox"] {
+  display: none;
+
+  &:checked+label:before {
+    background-color: #008F75;
+  }
+
+  &:checked+label:after {
+    content: "";
+    position: absolute;
+  }
+
+  &:checked+label:after {
+    top: 11px;
+    left: 20px;
+    width: 12px;
+    height: 7px;
+    border-left: 2px solid #FCFCFD;
+    border-bottom: 2px solid #FCFCFD;
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+
+  &:disabled+label:before {
+    border-color: #DEDFE0;
+  }
+}
+
+label {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
+  cursor: pointer;
+
+  &:before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    margin: 0 16px;
+    background: rgba(40, 43, 45, 0.02);
+    border: 1px solid #C8CACC;
+  }
+
+  &:hover:before {
+    border-color: #686D71
+  }
+}

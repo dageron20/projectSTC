@@ -1,7 +1,7 @@
 @import "../components/navbar/Navbar.css";
 @import "../components/leftBufferLine/LeftBufferLine.css";
 @import "../components/upBufferLine/UpBufferLine.css";
-
+@import "../components/listUsers/ListUsers.css";
 html {
   box-sizing: border-box;
 }
@@ -55,4 +55,18 @@ img,
   max-width: 100%;
   height: auto;
   object-fit: cover;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+
+  &-container {
+    width: 100%;
+  }
+}
+
+.work-flow {
+  height: 100%;
 }

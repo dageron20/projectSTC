@@ -1,0 +1,117 @@
+.list-users {
+  display: flex;
+  flex-direction: column;
+  width: 304px;
+  height: 100%;
+  border-right: 1px solid #C8CACC;
+}
+.list-users .all-users {
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px solid #C8CACC;
+}
+.list-users .all-users label {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 19px;
+}
+.list-users .all-users input:checked + label:after {
+  top: 5px;
+  left: 20px;
+  width: 12px;
+  height: 7px;
+  border-left: 2px solid #FCFCFD;
+  border-bottom: 2px solid #FCFCFD;
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+.list-users .item-user {
+  display: flex;
+  flex-direction: row;
+  padding: 15px 0;
+  justify-content: space-between;
+  align-items: center;
+}
+.list-users .item-user:hover {
+  background: #E6F6F1;
+}
+.list-users .item-user .title-user {
+  display: flex;
+  flex-direction: column;
+}
+.list-users .item-user .title-user .naming {
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 16px;
+  color: rgba(40, 43, 45, 0.92);
+}
+.list-users .item-user .title-user .job {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: rgba(40, 43, 45, 0.6);
+}
+.list-users .item-user .counter-cycle {
+  width: 16px;
+  height: 16px;
+  margin-right: 16px;
+  background-color: #38A88F;
+  color: rgba(252, 252, 253, 0.92);
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 11px;
+  line-height: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+input[type=checkbox] {
+  display: none;
+}
+input[type=checkbox]:checked + label:before {
+  background-color: #008F75;
+}
+input[type=checkbox]:checked + label:after {
+  content: "";
+  position: absolute;
+}
+input[type=checkbox]:checked + label:after {
+  top: 11px;
+  left: 20px;
+  width: 12px;
+  height: 7px;
+  border-left: 2px solid #FCFCFD;
+  border-bottom: 2px solid #FCFCFD;
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+input[type=checkbox]:disabled + label:before {
+  border-color: #DEDFE0;
+}
+
+label {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
+  cursor: pointer;
+}
+label:before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  margin: 0 16px;
+  background: rgba(40, 43, 45, 0.02);
+  border: 1px solid #C8CACC;
+}
+label:hover:before {
+  border-color: #686D71;
+}
+
+/*# sourceMappingURL=ListUsers.css.map */
