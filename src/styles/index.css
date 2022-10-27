@@ -1,4 +1,5 @@
 @import "../components/navbar/Navbar.css";
+@import "../components/leftBufferLine/LeftBufferLine.css";
 html {
   box-sizing: border-box;
 }
