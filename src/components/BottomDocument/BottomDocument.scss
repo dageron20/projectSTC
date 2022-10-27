@@ -1,0 +1,97 @@
+
+.bottom-document {
+  //width: 907px;
+  //margin-top: 10px;
+  width: 100%;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  border-top: 1px solid #C8CACC;
+  & .left-menu {
+    width: 50%;
+    float: left;
+    margin-left: 24px; //!!
+    //display: flex;
+    //justify-content: right;
+  }
+  & .right-menu {
+    width: 50%;
+    //margin-right:24px;  //!!
+    display: flex;
+    justify-content: space-evenly;
+  }
+  & p {
+
+  }
+  & button {
+    width: 137px;
+    height: 32px;
+    background-color: #ebecec;
+  }
+
+  & .btn-send-true {
+    width: 140px;
+    background-color: #007562;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    & svg {
+      width: 20px;
+      height: 20px;
+      margin-left: 8px;
+    }
+    & span {
+      //font-size: 18px;
+      width: 88px;
+      height: 16px;
+    }
+  }
+
+
+  & .box-spinner {
+    border: 1px solid #cfd0d2;
+    width: 96px;
+    height: 32px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    & .in-num {
+      margin-left: 15%; // !!
+    }
+
+    & .span-strip {
+      width: 20px;
+      height: 1px;
+      position: absolute;
+      left: 30%;
+      background-color: #cfd0d2;
+      transform: rotate(90deg);
+    }
+    & .span-minus {
+      position: absolute;
+      left: 55%;
+      width: 10px;
+      height: 1px;
+      background-color: black;
+    }
+    & .span-plus::before, .span-plus::after {
+      position: absolute;
+      left: 80%;
+      width: 10px;
+      height: 1px;
+      background-color: black;
+    }
+    & .span-plus::before, .span-plus::after {
+      content: '';
+    }
+    & .span-plus::before {
+      transform: rotate(90deg);
+    }
+
+  }
+}
