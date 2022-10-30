@@ -1,4 +1,12 @@
 @charset "UTF-8";
+.header-window {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: flex-end;
+  background-color: black;
+}
+
 .navbar {
   background-color: #000000;
   height: 32px;
