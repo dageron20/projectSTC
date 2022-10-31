@@ -3,6 +3,7 @@
 @import "../components/upBufferLine/UpBufferLine.css";
 @import "../components/listUsers/ListUsers.css";
 @import "../components/BottomDocument/BottomDocument.css";
+@import "../components/chooseDocumentButton/Choosedocument.css";
 html {
   box-sizing: border-box;
 }
@@ -58,16 +59,51 @@ img,
   object-fit: cover;
 }
 
+#root {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  min-width: 1280px;
+  flex-grow: 1;
+  height: 100%;
+}
+
+.App {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  justify-content: center;
+  min-width: 1280px;
+  height: 100%;
+}
+
 .main {
   display: flex;
   flex-direction: row;
-  width: 100%;
+  flex-grow: 1;
 
   &-container {
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
   }
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+  min-width: 1280px;
+}
+
 .work-flow {
-  height: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+}
+
+.document-flow {
+  display: flex;
+  flex-direction: column;
+  background: #D9D9D9;
+  flex-grow: 1;
 }
