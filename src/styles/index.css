@@ -3,6 +3,7 @@
 @import "../components/upBufferLine/UpBufferLine.css";
 @import "../components/listUsers/ListUsers.css";
 @import "../components/BottomDocument/BottomDocument.css";
+@import "../components/chooseDocumentButton/Choosedocument.css";
 html {
   box-sizing: border-box;
 }
@@ -101,7 +102,7 @@ img,
 .document-flow {
   display: flex;
   flex-direction: column;
-  background: #D9D9D9;
+  background: #EBECEC;
   flex-grow: 1;
 }
 

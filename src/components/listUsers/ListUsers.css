@@ -10,6 +10,7 @@
   flex-direction: row;
   align-items: center;
   border-bottom: 1px solid #C8CACC;
+  -webkit-user-select: none;
 }
 .list-users .all-users label {
   font-style: normal;
@@ -33,6 +34,7 @@
   padding: 15px 0;
   justify-content: space-between;
   align-items: center;
+  -webkit-user-select: none;
 }
 .list-users .item-user:hover {
   background: #E6F6F1;
