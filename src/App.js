@@ -59,6 +59,25 @@ function App() {
 
                         </aside>
                         <div className="document-flow">
+
+                            <div className="choose-document">
+                                <div className="choose-document-title">
+                                    Нет выбранных документов
+                                </div>
+                                <div className="choose-document-description">
+                                    Для отправки документа откройте документы и выберите пользоватея
+                                </div>
+                                <button className="choose-document-button">
+                                    Документы
+                                </button>
+                            </div>
+
+
+
+
+
+
+
                             <div className="bottom-document">
                                 <div className="left-menu">
                                     <button className='btn-document'>Документы</button>
