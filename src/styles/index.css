@@ -4,6 +4,7 @@
 @import "../components/listUsers/ListUsers.css";
 @import "../components/BottomDocument/BottomDocument.css";
 @import "../components/chooseDocumentButton/Choosedocument.css";
+<<<<<<< HEAD
 @import "../components/currentDocument/CurrentDocument.css";
 @font-face {
   font-family: "Inter-Regular", sans-serif;
@@ -29,6 +30,10 @@
   font-weight: 400;
   font-display: swap;
 }
+=======
+@import "../components/dropDownMenu/DropDownMenu.css";
+
+>>>>>>> caskey99
 html {
   box-sizing: border-box;
 }

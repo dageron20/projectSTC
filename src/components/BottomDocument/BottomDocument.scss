@@ -10,13 +10,13 @@
     margin-left: 24px;
   }
   & .right-menu {
-    width: 50%;
+    width: 444px;
     display: flex;
+    flex-direction: row;
+    align-items: center;
     justify-content: space-evenly;
   }
-  & p {
 
-  }
   & button {
     width: 137px;
     height: 32px;
@@ -43,48 +43,66 @@
     }
   }
 
-
   & .box-spinner {
     border: 1px solid #cfd0d2;
     width: 96px;
     height: 32px;
-    position: relative;
     display: flex;
+    flex-direction: row;
     align-items: center;
-    justify-content: space-around;
+    justify-content: flex-end;
 
     & .in-num {
-      margin-left: 15%; // !!
+      width: 15px;
+      height: 18px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content:flex-end;
     }
 
-    & .span-strip {
+    & .module-strip {
       width: 20px;
       height: 1px;
-      position: absolute;
-      left: 30%;
+      //position: absolute;
       background-color: #cfd0d2;
       transform: rotate(90deg);
     }
-    & .span-minus {
-      position: absolute;
-      left: 55%;
-      width: 10px;
-      height: 1px;
-      background-color: black;
-    }
-    & .span-plus::before, .span-plus::after {
-      position: absolute;
-      left: 80%;
-      width: 10px;
-      height: 1px;
-      background-color: black;
-    }
-    & .span-plus::before, .span-plus::after {
-      content: '';
-    }
-    & .span-plus::before {
-      transform: rotate(90deg);
-    }
+    & .module-minus {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
 
+      & .minus {
+        position: absolute;
+        width: 10px;
+        height: 1px;
+        background-color: black;
+      }
+    }
+    & .module-plus{
+      width: 24px;
+      height: 24px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+      margin-right: 4px;
+
+      &::before, &::after {
+        position: absolute;
+        content: "";
+        width: 10px;
+        height: 1px;
+        background-color: black;
+      }
+
+      &::before {
+        transform: rotate(90deg);
+      }
+    }
   }
 }

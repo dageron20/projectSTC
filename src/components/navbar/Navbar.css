@@ -1,4 +1,3 @@
-@charset "UTF-8";
 .header-window {
   display: flex;
   flex-direction: row;
@@ -15,10 +14,9 @@
   justify-content: right;
 }
 .navbar button {
-  width: 32px;
+  width: 40px;
   height: 32px;
   background-color: black;
-  position: relative;
   cursor: pointer;
 }
 .navbar button:before {
@@ -29,17 +27,49 @@
   font-size: 15px;
   transition: 0.3s;
 }
-.navbar button:hover:before {
-  transform: scale(0.8);
+.navbar .nav-btn-roll-up {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 .navbar .nav-btn-roll-up:before {
-  content: "−";
+  content: "";
+  width: 10px;
+  height: 1px;
+  background-color: #ffffff;
+}
+.navbar .nav-btn-full-screen {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 .navbar .nav-btn-full-screen:before {
-  content: "⃞";
+  content: "";
+  width: 10px;
+  height: 10px;
+  border: 1px solid #ffffff;
 }
-.navbar .nav-btn-close:before {
-  content: "🞨";
+.navbar .nav-btn-close {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.navbar .nav-btn-close::before, .navbar .nav-btn-close::after {
+  position: absolute;
+  content: "";
+  width: 14px;
+  height: 1px;
+  background-color: #ffffff;
+}
+.navbar .nav-btn-close::after {
+  transform: rotate(45deg);
+  content: "";
+}
+.navbar .nav-btn-close::before {
+  transform: rotate(135deg);
 }
 
 /*# sourceMappingURL=Navbar.css.map */
