@@ -11,6 +11,8 @@
   align-items: center;
   border-bottom: 1px solid #C8CACC;
   -webkit-user-select: none;
+  font-family: "Inter-SemiBold", sans-serif;
+  font-weight: 600;
 }
 .list-users .all-users label {
   font-style: normal;
@@ -48,12 +50,16 @@
   font-size: 13px;
   line-height: 16px;
   color: rgba(40, 43, 45, 0.92);
+  font-family: "Inter-SemiBold", sans-serif;
+  font-weight: 600;
 }
 .list-users .item-user .title-user .job {
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;
   color: rgba(40, 43, 45, 0.6);
+  font-family: "Inter-Regular", sans-serif;
+  font-weight: 400;
 }
 .list-users .item-user .counter-cycle {
   width: 16px;

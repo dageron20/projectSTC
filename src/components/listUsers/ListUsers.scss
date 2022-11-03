@@ -1,3 +1,5 @@
+@import "../../styles/_vars.scss";
+
 .list-users {
   display: flex;
   flex-direction: column;
@@ -11,6 +13,7 @@
     align-items: center;
     border-bottom: 1px solid  #C8CACC;
     -webkit-user-select: none;
+    @include f600;
 
     & label {
       font-style: normal;
@@ -56,12 +59,14 @@
         font-size: 13px;
         line-height: 16px;
         color: rgba(40, 43, 45, 0.92);
+        @include f600;
       }
       & .job {
         font-weight: 400;
         font-size: 12px;
         line-height: 16px;
         color: rgba(40, 43, 45, 0.6);
+        @include f400;
       }
     }
 
