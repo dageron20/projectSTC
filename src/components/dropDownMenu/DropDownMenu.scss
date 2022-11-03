@@ -5,6 +5,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  outline: none;
 
   &-value {
     width: 242px;
@@ -40,7 +41,6 @@
     }
 
     &-value {
-      color: black;
       &-disabled {
         display: none;
       }

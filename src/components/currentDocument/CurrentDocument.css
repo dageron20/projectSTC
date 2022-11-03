@@ -122,6 +122,7 @@
 .current-document-container-nameObject {
   display: flex;
   flex-direction: row;
+  margin-bottom: 15px;
 }
 .current-document-container-nameObject span {
   width: 242px;

@@ -5,17 +5,6 @@ function App() {
   return (
     <div className="App">
         <div className="container">
-            <div className="drop-down-menu">
-                <div className="drop-down-menu-value">
-                    Имя по умолчанию
-                </div>
-                <select className="drop-down-menu-selection-field" required="required">
-                    <option className="drop-down-menu-selection-field-value-disabled" value="" disabled selected>Не выбрано</option>
-                    <option className="drop-down-menu-selection-field-value" value="">Выбрано</option>
-                    <option className="drop-down-menu-selection-field-value" value="">Не выбрано</option>
-                </select>
-            </div>
-
             <header className="header-window">
                 <nav className="navbar">
                     <button className='nav-btn-roll-up'/>
@@ -115,7 +104,21 @@ function App() {
                                         <input type="text" placeholder="Placeholder"/>
                                     </div>
 
+                                    <div className="drop-down-menu">
+                                        <div className="drop-down-menu-value">
+                                            Имя по умолчанию
+                                        </div>
+                                        <select className="drop-down-menu-selection-field" required="required">
+                                            <option className="drop-down-menu-selection-field-value-disabled" value="" disabled selected>Не выбрано</option>
+                                            <option className="drop-down-menu-selection-field-value" value="">Выбрано</option>
+                                            <option className="drop-down-menu-selection-field-value" value="">Не выбрано</option>
+                                        </select>
+                                    </div>
+
+
+
                                 </div>
+
                             </div>
 
 
