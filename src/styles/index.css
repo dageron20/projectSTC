@@ -3,7 +3,9 @@
 @import "../components/upBufferLine/UpBufferLine.css";
 @import "../components/listUsers/ListUsers.css";
 @import "../components/BottomDocument/BottomDocument.css";
->>>>>>> master
+@import "../components/chooseDocumentButton/Choosedocument.css";
+@import "../components/dropDownMenu/DropDownMenu.css";
+
 html {
   box-sizing: border-box;
 }

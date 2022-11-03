@@ -1,0 +1,54 @@
+.drop-down-menu {
+  width: 752px;
+  height: 48px;
+  background-color: #F9FAFA;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.drop-down-menu-value {
+  width: 242px;
+  height: 32px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  margin-left: 12px;
+}
+.drop-down-menu-selection-field {
+  width: 459px;
+  height: 32px;
+  border: 1px solid #C8CACC;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 24px;
+  margin-left: 15px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  padding-left: 20.94px;
+}
+.drop-down-menu-selection-field:required:invalid {
+  color: #7c7e7f;
+}
+.drop-down-menu-selection-field:not([multiple]) {
+  background-position: calc(100% - 20.36px);
+  background-image: url(../img/TickDown.svg);
+  background-repeat: no-repeat;
+}
+.drop-down-menu-selection-field-value {
+  color: black;
+}
+.drop-down-menu-selection-field-value-disabled {
+  display: none;
+}
+.drop-down-menu-selection-field-tick-down {
+  margin-right: 20.36px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/*# sourceMappingURL=DropDownMenu.css.map */

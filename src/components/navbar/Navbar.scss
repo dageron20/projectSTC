@@ -14,10 +14,9 @@
   justify-content: right;
 
   & button {
-    width: 32px;
+    width: 40px;
     height: 32px;
     background-color: black;
-    position: relative;
     cursor: pointer;
     &:before{
       color: #ffffff;
@@ -27,26 +26,58 @@
       font-size: 15px;
       transition: 0.3s;
     }
-    &:hover:before {
-      transform: scale(0.8);
-    }
   }
 
   .nav-btn-roll-up {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
     &:before{
-      content: "\2212";
+      content: "";
+      width: 10px;
+      height: 1px;
+      background-color: #ffffff;
     }
   }
 
-  .nav-btn-full-screen {
+
+  .nav-btn-full-screen{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
     &:before{
-      content: "\20DE";
+      content: "";
+      width: 10px;
+      height: 10px;
+      border: 1px solid #ffffff;
     }
   }
 
-  .nav-btn-close {
-    &:before{
-      content: "\1F7A8";
+  & .nav-btn-close {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    &::before, &::after {
+      position: absolute;
+      content: "";
+      width: 14px;
+      height: 1px;
+      background-color: #ffffff;
+    }
+
+    &::after {
+      transform: rotate(45deg);
+      content: '';
+    }
+
+    &::before {
+      transform: rotate(135deg);
     }
   }
 

@@ -5,6 +5,17 @@ function App() {
   return (
     <div className="App">
         <div className="container">
+            <div className="drop-down-menu">
+                <div className="drop-down-menu-value">
+                    Имя по умолчанию
+                </div>
+                <select className="drop-down-menu-selection-field" required="required">
+                    <option className="drop-down-menu-selection-field-value-disabled" value="" disabled selected>Не выбрано</option>
+                    <option className="drop-down-menu-selection-field-value" value="">Выбрано</option>
+                    <option className="drop-down-menu-selection-field-value" value="">Не выбрано</option>
+                </select>
+            </div>
+
             <header className="header-window">
                 <nav className="navbar">
                     <button className='nav-btn-roll-up'/>
@@ -85,10 +96,14 @@ function App() {
                                 <div className="right-menu">
                                     <p>Колличесвто отправок</p>
                                     <div className='box-spinner'>
-                                        <input className='in-num' type='number' min='1' max='99' step='1' value='1'/>
-                                        <span className="span-strip"></span>
-                                        <span className="span-minus"></span>
-                                        <span className="span-plus"></span>
+                                        <div className='in-num'> 1</div>
+                                        <div className="module-strip"></div>
+                                        <div className="module-minus">
+                                            <div className="minus"></div>
+                                        </div>
+                                        <div className="module-plus">
+                                            <div className="plus"></div>
+                                        </div>
                                     </div>
                                     {/*<button disabled className='btn-send'>Отправить</button>*/}
                                     <button className='btn-send-true'>
