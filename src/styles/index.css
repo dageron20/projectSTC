@@ -1,10 +1,8 @@
-@import "../components/navbar/Navbar.css";
-@import "../components/leftBufferLine/LeftBufferLine.css";
-@import "../components/upBufferLine/UpBufferLine.css";
 @import "../components/listUsers/ListUsers.css";
 @import "../components/BottomDocument/BottomDocument.css";
 @import "../components/chooseDocumentButton/Choosedocument.css";
 @import "../components/currentDocument/CurrentDocument.css";
+@import "../components/Messages/messages.css";
 @font-face {
   font-family: "Inter-Regular", sans-serif;
   src: url("./fonts/Inter-Regular400.woff2") format("woff2");
@@ -97,7 +95,6 @@ img,
   flex-direction: row;
   flex-grow: 1;
   justify-content: center;
-  min-width: 1280px;
   height: 100%;
 }
 
@@ -115,7 +112,7 @@ img,
 .container {
   display: flex;
   flex-direction: column;
-  min-width: 1280px;
+  flex-grow: 1;
 }
 
 .work-flow {
