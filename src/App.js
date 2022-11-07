@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import './styles/index.css';
 import BottomDocument from "./components/BottomDocument/BottomDocument";
 import ChooseDocument from "./components/chooseDocumentButton/ChooseDocument";
@@ -7,7 +7,8 @@ import ListUser from "./components/listUsers/ListUser";
 import Messages from "./components/Messages/Messages";
 
 function App() {
-  return (
+
+    return (
     <div className="App">
         <div className="container">
             <main className="main">
@@ -15,8 +16,8 @@ function App() {
                     <div className="work-flow">
                         <ListUser />
                         <div className="document-flow">
-                            {/*<ChooseDocument />*/}
-                            <CurrentDocument />
+                            <ChooseDocument />
+                            {/*<CurrentDocument />*/}
                             <BottomDocument />
                         </div>
                         <Messages />
@@ -25,7 +26,7 @@ function App() {
             </main>
         </div>
     </div>
-  );
+    );
 }
 
 export default App;

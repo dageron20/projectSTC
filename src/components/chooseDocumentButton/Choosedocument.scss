@@ -35,5 +35,14 @@
     background-color: #007562;
     color: #FCFCFD;
     margin-top: 24px;
+
+    &:hover {
+      transition: 0.6s;
+      background-color: #005243;
+    }
+    &:not(:hover) {
+      transition: 0.3s;
+    }
   }
+
 }
