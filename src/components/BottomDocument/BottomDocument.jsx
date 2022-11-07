@@ -1,6 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 const BottomDocument = () => {
+    const [counter, setCounter] = useState(1);
+
+    const handleClickMinus = () => {
+        if(counter > 0)
+            setCounter(counter - 1)
+    }
+    const handleClickPlus = () => {
+        if(counter < 100)
+            setCounter(counter + 1)
+    }
     return (
         <div className="bottom-document">
             <div className="left-menu">
@@ -9,12 +19,12 @@ const BottomDocument = () => {
             <div className="right-menu">
                 <p>Колличесвто отправок</p>
                 <div className='box-spinner'>
-                    <div className='in-num'> 1</div>
+                    <div className='in-num'> {counter}</div>
                     <div className="module-strip"></div>
-                    <div className="module-minus">
+                    <div className="module-minus" onClick={handleClickMinus}>
                         <div className="minus"></div>
                     </div>
-                    <div className="module-plus">
+                    <div className="module-plus" onClick={handleClickPlus}>
                         <div className="plus"></div>
                     </div>
                 </div>
