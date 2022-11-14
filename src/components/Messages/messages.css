@@ -1,7 +1,23 @@
 aside {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 304px;
+  border-right: 1px solid #C8CACC;
   border-left: 1px solid #C8CACC;
   font-family: "Inter-Bold", sans-serif;
   font-weight: 700;
+}
+aside h1 {
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  border-bottom: 1px solid #C8CACC;
+  -webkit-user-select: none;
+  font-family: "Inter-SemiBold", sans-serif;
+  font-weight: 600;
 }
 
 /*# sourceMappingURL=messages.css.map */

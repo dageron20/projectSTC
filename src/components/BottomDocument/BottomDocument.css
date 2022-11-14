@@ -12,6 +12,7 @@
 }
 .bottom-document .left-menu {
   margin-left: 24px;
+  -webkit-user-select: none;
 }
 .bottom-document .right-menu {
   width: 444px;
@@ -19,6 +20,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
+  -webkit-user-select: none;
 }
 .bottom-document button {
   width: 137px;

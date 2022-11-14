@@ -11,32 +11,12 @@ const ListUser = ({clients, state, setState}) => {
             { clients.map(clients => <ItemUser {...clients} key={clients.ip} clients={clients} />) }
             { state ?
                 <div className="list-users-settings">
-                <div className="list-users-settings-window">
-                    <span>IP</span>
-                    <input type="text" placeholder="Введите свой ip"/>
-                    <button>Сохранить</button>
+                    <div className="list-users-settings-window">
+                        <span>IP</span>
+                        <input type="text" placeholder="Введите свой ip"/>
+                        <button>Сохранить</button>
+                    </div>
                 </div>
-            </div>
-<<<<<<< HEAD
-            <div className="item-user">
-                <input type="checkbox" id="users3" name="users" />
-                <label htmlFor="users3">
-                    <div className="title-user">
-                        <span className="naming">Фамилия Имя</span>
-                        <span className="job">Должность, Статус</span>
-                    </div>
-                </label>
-            </div>
-            <div className="item-user">
-                <input type="checkbox" id="users4" name="users" />
-                <label h
-                       tmlFor="users4">
-                    <div className="title-user">
-                        <span className="naming">Фамилия Имя</span>
-                        <span className="job">Должность, Статус</span>
-                    </div>
-                </label>
-=======
                 :
                 <div></div>
             }
@@ -93,7 +73,6 @@ const ListUser = ({clients, state, setState}) => {
                         </g>
                     </svg>
                 </a>
->>>>>>> master
             </div>
         </aside>
     )

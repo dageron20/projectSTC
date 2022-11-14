@@ -4,6 +4,7 @@
   width: 380px;
   align-items: center;
   margin: auto;
+  -webkit-user-select: none;
 }
 .choose-document-title {
   font-weight: 600;

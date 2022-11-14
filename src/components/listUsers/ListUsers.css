@@ -36,6 +36,7 @@
   font-size: 14px;
   font-family: "Inter-Regular", sans-serif;
   font-weight: 400;
+  -webkit-user-select: none;
 }
 .list-users-settings-window input {
   height: 32px;
@@ -56,6 +57,7 @@
   margin-right: 12px;
   background-color: #ebecec;
   cursor: pointer;
+  -webkit-user-select: none;
 }
 .list-users-settings-window button:hover {
   cursor: pointer;
