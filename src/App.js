@@ -6,27 +6,48 @@ import CurrentDocument from "./components/currentDocument/CurrentDocument";
 import ListUser from "./components/listUsers/ListUser";
 import Messages from "./components/Messages/Messages";
 
-function App() {
+function App({events, clients}) {
+    const [isOpened, setIsOpened] = useState(false);
+    function handleChangeOpened()  {
+        setIsOpened((prevState) => {
+            return prevState = true;
+        })
+    }
+    function handleChangeClose() {
+        setIsOpened((prevState) => {
+            return prevState = false;
+        })
+    }
+
+    const [isOpenedSettings, setIsOpenedSettings] = useState(true);
 
     return (
-    <div className="App">
-        <div className="container">
-            <main className="main">
-                <div className="main-container">
-                    <div className="work-flow">
-                        <ListUser />
-                        <div className="document-flow">
-                            <ChooseDocument />
-                            {/*<CurrentDocument />*/}
-                            <BottomDocument />
+        <>
+            <div className="App">
+                <div className="container">
+                    <main className="main">
+                        <div className="main-container">
+                            <div className="work-flow">
+                                <ListUser clients={clients} state={isOpenedSettings} setState={setIsOpenedSettings} />
+                                <div className="document-flow">
+                                    {
+                                        isOpened ?
+                                            <CurrentDocument qwe={handleChangeClose} />
+                                                 :
+                                            <ChooseDocument qwe={handleChangeOpened} />
+
+                                    }
+                                    <BottomDocument  />
+                                </div>
+                                <Messages />
+                            </div>
                         </div>
-                        <Messages />
-                    </div>
+                    </main>
                 </div>
-            </main>
-        </div>
-    </div>
-    );
+            </div>
+        </>
+
+  );
 }
 
 export default App;
