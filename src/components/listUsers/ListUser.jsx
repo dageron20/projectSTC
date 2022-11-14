@@ -30,7 +30,8 @@ const ListUser = () => {
             </div>
             <div className="item-user">
                 <input type="checkbox" id="users4" name="users" />
-                <label htmlFor="users4">
+                <label h
+                       tmlFor="users4">
                     <div className="title-user">
                         <span className="naming">Фамилия Имя</span>
                         <span className="job">Должность, Статус</span>
