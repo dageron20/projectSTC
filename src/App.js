@@ -18,6 +18,9 @@ function App({events, clients}) {
             return prevState = false;
         })
     }
+
+    const [isOpenedSettings, setIsOpenedSettings] = useState(true);
+
     return (
         <>
             <div className="App">
@@ -25,7 +28,7 @@ function App({events, clients}) {
                     <main className="main">
                         <div className="main-container">
                             <div className="work-flow">
-                                <ListUser clients={clients} />
+                                <ListUser clients={clients} state={isOpenedSettings} setState={setIsOpenedSettings} />
                                 <div className="document-flow">
                                     {
                                         isOpened ?
