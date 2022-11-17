@@ -37,6 +37,7 @@ import { Buffer } from 'buffer';
                     <input type="checkbox" id="users1" name="users"/>
                     <label htmlFor="users1">Пользователи</label>
                 </div>
+
                 {jsonfile ? jsonfile.map(jsonfile => <ItemUser {...jsonfile} key={jsonfile.ip}
                                                                jsonfile={jsonfile}/>) : "Пользователи не выбраны"}
 

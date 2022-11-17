@@ -5,6 +5,7 @@ import ChooseDocument from "./components/chooseDocumentButton/ChooseDocument";
 import CurrentDocument from "./components/currentDocument/CurrentDocument";
 import ListUser from "./components/listUsers/ListUser";
 import Messages from "./components/Messages/Messages";
+import { WebSocketServer } from 'ws';
 
 function App({events, clients}) {
     const [isOpened, setIsOpened] = useState(false);
@@ -20,6 +21,12 @@ function App({events, clients}) {
     }
 
     const [isOpenedSettings, setIsOpenedSettings] = useState(true);
+
+    const socket = new WebSocket('ws://192.168.0.103:3000/');
+
+    socket.onopen = () => {
+        console.log("подключение установлено");
+    }
 
     return (
         <>
