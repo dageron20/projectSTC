@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-const BottomDocument = () => {
+const BottomDocument = ({ws}) => {
     const [counter, setCounter] = useState(1);
 
     const handleClickMinus = () => {
@@ -11,6 +11,7 @@ const BottomDocument = () => {
         if(counter < 100)
             setCounter(counter + 1)
     }
+
     return (
         <div className="bottom-document">
             <div className="left-menu">
@@ -29,7 +30,12 @@ const BottomDocument = () => {
                     </div>
                 </div>
                 {/*<button disabled className='btn-send'>Отправить</button>*/}
-                <button className='btn-send-true'>
+                <button className='btn-send-true' onClick={() => ws.send(JSON.stringify({
+                    method: "message",
+                    name : "Василий",
+                    ip : '192.168.0.1',
+                    message: "message is send!"
+                }))}>
                                          <span>
                                             Отправить
                                          </span>

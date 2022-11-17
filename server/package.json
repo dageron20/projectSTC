@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "websocket": "^1.0.34",
+    "ws": "^8.11.0"
+  },
+  "optionalDependencies": {
+    "utf-8-validate": "^5.0.10"
+  }
+}

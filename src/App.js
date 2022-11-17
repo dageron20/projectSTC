@@ -21,6 +21,16 @@ function App({events, clients}) {
 
     const [isOpenedSettings, setIsOpenedSettings] = useState(true);
 
+    const ws = new WebSocket('ws://192.168.31.14:3000');
+
+    ws.onopen = () => {
+        // console.log('Подключение установлено')
+        ws.send(JSON.stringify({
+            method: "connection",
+            id: 11,
+        }))
+    }
+
     return (
         <>
             <div className="App">
@@ -37,9 +47,9 @@ function App({events, clients}) {
                                             <ChooseDocument qwe={handleChangeOpened} />
 
                                     }
-                                    <BottomDocument  />
+                                    <BottomDocument ws={ws}  />
                                 </div>
-                                <Messages />
+                                <Messages ws={ws} />
                             </div>
                         </div>
                     </main>
