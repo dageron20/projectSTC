@@ -22,10 +22,10 @@ function App({events, clients}) {
 
     const [isOpenedSettings, setIsOpenedSettings] = useState(true);
 
-    const ws = new WebSocket('ws://192.168.31.14:3000');
+    const ws = new WebSocket('ws://192.168.0.103:3000');
 
     ws.onopen = () => {
-        // console.log('Подключение установлено')
+         console.log('Подключение установлено')
         ws.send(JSON.stringify({
             method: "connection",
             id: 11,
