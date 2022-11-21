@@ -11,7 +11,8 @@ const server = new WebSocketServer({ port: 3000 })
 
 server.on('connection', ws => {
     ws.on('message', msg => {
-        msg = JSON.parse(msg)
+        msg = JSON.parse(msg);
+
         switch (msg.method) {
             case "connection":
                 connectionHandler(ws, msg)
@@ -19,21 +20,13 @@ server.on('connection', ws => {
             case "message":
                 ws.send(JSON.stringify(msg))
                 break
-            default :
+            default:
                 break
         }
     })
-    // ws.send('ты успешно зашел')
 })
 
 const connectionHandler = (ws, msg) => {
     ws.id = msg.id
     console.log('connectionHandler')
 }
-
-// ws.on('message', message => {
-//     server.clients.forEach(client => {
-//         //client.send(JSON.parse(message.toString()))
-//         console.log(JSON.parse(message))
-//     })
-// })
