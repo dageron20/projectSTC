@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-const BottomDocument = ({ws}) => {
+const BottomDocument = ({ws, userIp, valueDoc}) => {
     const [counter, setCounter] = useState(1);
 
     const handleClickMinus = () => {
@@ -10,6 +10,16 @@ const BottomDocument = ({ws}) => {
     const handleClickPlus = () => {
         if(counter < 100)
             setCounter(counter + 1)
+    }
+
+    function sendMsg (userIp, valueDoc){
+        const obj = {
+            method: "message",
+            ip : userIp,
+            id : '',
+            message: valueDoc,
+        }
+        return JSON.stringify(obj)
     }
 
     return (
@@ -30,12 +40,7 @@ const BottomDocument = ({ws}) => {
                     </div>
                 </div>
                 {/*<button disabled className='btn-send'>Отправить</button>*/}
-                <button className='btn-send-true' onClick={() => ws.send(JSON.stringify({
-                    method: "message",
-                    name : "Василий",
-                    ip : '192.168.0.1',
-                    message: "message is send!"
-                }))}>
+                <button className='btn-send-true' onClick={() => ws.send(sendMsg(userIp, valueDoc))}>
                                          <span>
                                             Отправить
                                          </span>

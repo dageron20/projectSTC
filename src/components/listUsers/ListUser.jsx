@@ -1,21 +1,31 @@
-import React, {useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import ItemUser from "../itemUser/ItemUser";
 import { Buffer } from 'buffer';
 
-    const ListUser = ({clients, state, setState}) => {
-
+    const ListUser = ({clients, state, setState, setUserIp}) => {
+        const key = 'clients'
         const [file, setFile] = useState();
         const [fileurl, setFileurl] = useState();
         const [jsonfile, setJsonfile] = useState();
         const fileReader = new FileReader();
+        const [data, setData] = useState()
         fileReader.onloadend = () => {
             setFileurl(fileReader.result);
             const obj = JSON.parse(JSON.stringify(fileReader.result));
             const json = Buffer.from(obj.substring(29), "base64").toString();
             const result = JSON.parse(json);
-            console.log(result);
+            sessionStorage.setItem(key, JSON.stringify(result))
+            // console.log(JSON.stringify(sessionStorage.getItem(key)))
+            // console.log(sessionStorage.getItem(key))
+            // console.log(JSON.parse(sessionStorage.getItem(key)))
+            getClients()
+            // console.log(result);
             setJsonfile(result);
         };
+
+        const getClients = () => {
+            setData(sessionStorage.getItem(key))
+        }
 
         fileReader.addEventListener('progress', (event) => { /* Процент загрузки json файла в console */
             if (event.loaded && event.total) {
@@ -31,14 +41,27 @@ import { Buffer } from 'buffer';
             fileReader.readAsDataURL(clients2);
         }
 
+
+
+        // useEffect(() => {
+        //     console.log('useEffect')
+        // }, [jsonfile])
+
         return (
             <aside className="list-users">
                 <div className="all-users">
                     <input type="checkbox" id="users1" name="users"/>
                     <label htmlFor="users1">Пользователи</label>
                 </div>
-                {jsonfile ? jsonfile.map(jsonfile => <ItemUser {...jsonfile} key={jsonfile.ip}
-                                                               jsonfile={jsonfile}/>) : "Пользователи не выбраны"}
+                {/*{jsonfile ? jsonfile.map(jsonfile => <ItemUser {...jsonfile} key={jsonfile.ip}*/}
+                {/*                                               jsonfile={jsonfile}/>) : "Пользователи не выбраны"}*/}
+
+                {sessionStorage.length === 0
+                    ?
+                    "выберите пользовтаеля"
+                    :
+                    (JSON.parse(sessionStorage.getItem(key))).map(element => <ItemUser key={element.ip} data={element} setUserIp={setUserIp}/>)
+                }
 
                 <form>
                     <input type="file"
