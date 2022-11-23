@@ -3,7 +3,7 @@
 @import "../components/chooseDocumentButton/Choosedocument.css";
 @import "../components/currentDocument/CurrentDocument.css";
 @import "../components/Messages/messages.css";
-@import "../components/itemMessage/itemMessage.css";
+@import "../components/ItemMessage/ItemMessage.css";
 @font-face {
   font-family: "Inter-Regular", sans-serif;
   src: url("./fonts/Inter-Regular400.woff2") format("woff2");

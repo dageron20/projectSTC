@@ -1,6 +1,8 @@
 import React from "react";
 
-const CurrentDocument = ({qwe, opened}) => {
+const CurrentDocument = ({qwe, setValueDoc}) => {
+
+
     return (
         <div className="current-document">
             <div className="current-document-title">
@@ -14,7 +16,7 @@ const CurrentDocument = ({qwe, opened}) => {
             <div className="current-document-container">
                 <div className="current-document-container-identity">
                     <span>идентификатор распоряжения</span>
-                    <input type="text" placeholder="Placeholder"/>
+                    <input type="text" placeholder="Placeholder" onChange={(e) => {setValueDoc(e.target.value)}}/>
                     <span className="identity-subtitle">Текст пояснения</span>
                 </div>
                 <div className="current-document-container-project">

@@ -4,6 +4,9 @@ aside {
   position: relative;
   width: 304px;
   border-right: 1px solid #C8CACC;
+  border-left: 1px solid #C8CACC;
+  font-family: "Inter-Bold", sans-serif;
+  font-weight: 700;
 }
 aside-button {
   height: 32px;
@@ -46,30 +49,15 @@ aside .message-field .title-user .job {
 aside .message-field .all-message {
   height: 50px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  justify-content: space-around;
   border-bottom: 1px solid #C8CACC;
   -webkit-user-select: none;
   font-family: "Inter-SemiBold", sans-serif;
   font-weight: 600;
 }
-aside .message-field .all-message label {
-  font-style: normal;
-  font-weight: 600;
-  font-size: 15px;
-  line-height: 19px;
-}
-aside .message-field .all-message input:checked + label:after {
-  top: 5px;
-  left: 20px;
-  width: 12px;
-  height: 7px;
-  border-left: 2px solid #FCFCFD;
-  border-bottom: 2px solid #FCFCFD;
-  -ms-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-}
-aside .message-field .item-user {
+aside .all-message .message-field {
   display: flex;
   flex-direction: row;
   padding: 15px 0;
@@ -77,14 +65,14 @@ aside .message-field .item-user {
   align-items: center;
   -webkit-user-select: none;
 }
-aside .message-field .item-user:hover {
+aside .all-message .message-field:hover {
   background: #E6F6F1;
 }
-aside .message-field .item-user .title-user {
+aside .all-message .title-user {
   display: flex;
   flex-direction: column;
 }
-aside .message-field .item-user .title-user .naming {
+aside .all-message .title-user .naming {
   font-weight: 600;
   font-size: 13px;
   line-height: 16px;
@@ -92,29 +80,13 @@ aside .message-field .item-user .title-user .naming {
   font-family: "Inter-SemiBold", sans-serif;
   font-weight: 600;
 }
-aside .message-field .item-user .title-user .job {
+aside .all-message .title-user .job {
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;
   color: rgba(40, 43, 45, 0.6);
   font-family: "Inter-Regular", sans-serif;
   font-weight: 400;
-}
-aside .message-field .item-user .counter-cycle {
-  width: 16px;
-  height: 16px;
-  margin-right: 16px;
-  background-color: #38A88F;
-  color: rgba(252, 252, 253, 0.92);
-  border-radius: 50%;
-  font-weight: 700;
-  font-size: 11px;
-  line-height: 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  letter-spacing: 0.02em;
 }
 
 /*# sourceMappingURL=messages.css.map */

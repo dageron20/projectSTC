@@ -6,6 +6,8 @@ aside {
   position: relative;
   width: 304px;
   border-right: 1px solid #C8CACC;
+  border-left: 1px solid #C8CACC;
+  @include f700;
 
   &-button {
     height: 32px;
@@ -15,30 +17,27 @@ aside {
     bottom: 12px;
   }
 
-  & .message-field {
+  & .all-message{
+    height: 50px;
     display: flex;
     flex-direction: row;
-    padding: 15px 0;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-around;
+    border-bottom: 1px solid  #C8CACC;
     -webkit-user-select: none;
+    @include f600;
 
-
-    &:hover {
-      background: #E6F6F1;
-    }
-
-    & .title-user {
+    & .message-field {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
+      padding: 15px 0;
+      justify-content: space-between;
+      align-items: center;
+      -webkit-user-select: none;
 
 
-      & .naming {
-        font-weight: 600;
-        font-size: 13px;
-        line-height: 16px;
-        color: rgba(40, 43, 45, 0.92);
-        @include f600;
+      &:hover {
+        background: #E6F6F1;
       }
 
       & .job {
