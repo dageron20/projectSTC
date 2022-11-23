@@ -28,7 +28,7 @@ const Messages = ({ws}) => {
                         ?
                         "Сообщения отсутствуют"
                         :
-                        (new Array(localStorage.length).fill().map((e, i) => i + 1)).map(i =>  <ItemMessage message={JSON.parse(localStorage.getItem(i))} />)
+                        (new Array(localStorage.length).fill().map((e, i) => i + 1)).map(i =>  <ItemMessage message={JSON.parse(localStorage.getItem(i))} key={(JSON.parse(localStorage.getItem(i))).id} />)
 
                 }
             </div>

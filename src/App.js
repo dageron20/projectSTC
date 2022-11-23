@@ -5,9 +5,8 @@ import ChooseDocument from "./components/chooseDocumentButton/ChooseDocument";
 import CurrentDocument from "./components/currentDocument/CurrentDocument";
 import ListUser from "./components/listUsers/ListUser";
 import Messages from "./components/Messages/Messages";
-import { WebSocketServer } from 'ws';
 
-function App({events, clients}) {
+function App() {
     const [isOpened, setIsOpened] = useState(false);
     function handleChangeOpened()  {
         setIsOpened((prevState) => {
@@ -39,7 +38,7 @@ function App({events, clients}) {
                     <main className="main">
                         <div className="main-container">
                             <div className="work-flow">
-                                <ListUser clients={clients} state={isOpenedSettings} setState={setIsOpenedSettings} />
+                                <ListUser state={isOpenedSettings} setState={setIsOpenedSettings} />
                                 <div className="document-flow">
                                     {
                                         isOpened ?
