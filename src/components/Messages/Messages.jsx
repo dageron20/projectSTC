@@ -24,11 +24,12 @@ const Messages = ({ws}) => {
             <div>
                 <h1 className="all-message">Входящие сообщения</h1>
                 {
-                    localStorage.length == 0
+                    localStorage.length === 0
                         ?
                         "Сообщения отсутствуют"
                         :
                         (new Array(localStorage.length).fill().map((e, i) => i + 1)).map(i =>  <ItemMessage message={JSON.parse(localStorage.getItem(i))} />)
+
                 }
             </div>
         </aside>

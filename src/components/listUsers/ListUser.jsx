@@ -14,6 +14,7 @@ import { Buffer } from 'buffer';
             const json = Buffer.from(obj.substring(29), "base64").toString();
             const result = JSON.parse(json);
             console.log(result);
+            sessionStorage.setItem(result);
             setJsonfile(result);
         };
 

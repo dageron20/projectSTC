@@ -3,11 +3,11 @@ const {WebSocketServer} = require("ws");
 
 const server = new WebSocketServer({ port: 3000 })
 
-// server.on('connection', function connection(ws, req) {
-//     const ip = req.socket.remoteAddress;
-//     // console.log('IP:', ip.replace(/^.*:/, ''))
-//
-// });
+
+server.on('connection', function connection(ws, req) {
+    const ip = req.socket.remoteAddress;
+    console.log('IP:', ip.replace(/^.*:/, ''));
+});
 
 server.on('connection', ws => {
     ws.on('message', msg => {
