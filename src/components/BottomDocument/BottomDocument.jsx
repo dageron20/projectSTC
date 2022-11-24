@@ -15,11 +15,14 @@ const BottomDocument = ({ws, userIp, valueDoc}) => {
     function sendMsg (userIp, valueDoc){
         const obj = {
             method: "message",
-            ip : userIp,
+            ipRecipient : userIp,
+            ipSender: '',
+            ipCurr: '',
             id : '',
             message: valueDoc,
         }
-        ws.send(JSON.stringify(obj));
+        ws.send(JSON.stringify(obj))
+        // return JSON.stringify(obj)
     }
 
     return (

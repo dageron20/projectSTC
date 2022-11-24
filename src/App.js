@@ -1,4 +1,4 @@
-import React, {useRef, useState} from "react";
+import React, {useEffect, useState} from "react";
 import './styles/index.css';
 import BottomDocument from "./components/BottomDocument/BottomDocument";
 import ChooseDocument from "./components/chooseDocumentButton/ChooseDocument";
@@ -7,9 +7,9 @@ import ListUser from "./components/listUsers/ListUser";
 import Messages from "./components/Messages/Messages";
 import ItemMessage from "./components/ItemMessage/ItemMessage";
 
-const ws = new WebSocket('ws://192.168.0.103:3000');
 
-function App() {
+
+function App({events, clients}) {
     const [isOpened, setIsOpened] = useState(false);
     function handleChangeOpened()  {
         setIsOpened((prevState) => {
@@ -22,21 +22,22 @@ function App() {
         })
     }
 
-    const [isOpenedSettings, setIsOpenedSettings] = useState(true);
+    const [isOpenedSettings, setIsOpenedSettings] = useState(false);
     const [userIp, setUserIp] = useState();
     const [valueDoc, setValueDoc] = useState()
 
 
-    React.useEffect(() => {
+    useEffect(() => {
         ws.onopen = () => {
             console.log('Подключение установлено')
-            ws.send(JSON.stringify({
-                method: "connection",
-                id: 11,
-            }))
-        }
-    }, [])
 
+            // ws.send(JSON.stringify({
+            //     method: "connection",
+            //     id: 9,
+            // }))
+        }
+        return () => ws.close();
+    }, [])
 
 
     return (
@@ -46,7 +47,7 @@ function App() {
                     <main className="main">
                         <div className="main-container">
                             <div className="work-flow">
-                                <ListUser state={isOpenedSettings} setState={setIsOpenedSettings} setUserIp={setUserIp} />
+                                <ListUser clients={clients} isOpenedSettings={isOpenedSettings} setState={setIsOpenedSettings} setUserIp={setUserIp} />
                                 <div className="document-flow">
                                     {
                                         isOpened ?
