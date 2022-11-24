@@ -15,11 +15,14 @@ const BottomDocument = ({ws, userIp, valueDoc}) => {
     function sendMsg (userIp, valueDoc){
         const obj = {
             method: "message",
-            ip : userIp,
+            ipRecipient : userIp,
+            ipSender: '',
+            ipCurr: '',
             id : '',
             message: valueDoc,
         }
-        return JSON.stringify(obj)
+        ws.send(JSON.stringify(obj))
+        // return JSON.stringify(obj)
     }
 
     return (
@@ -40,7 +43,7 @@ const BottomDocument = ({ws, userIp, valueDoc}) => {
                     </div>
                 </div>
                 {/*<button disabled className='btn-send'>Отправить</button>*/}
-                <button className='btn-send-true' onClick={() => ws.send(sendMsg(userIp, valueDoc))}>
+                <button className='btn-send-true' onClick={() => sendMsg(userIp, valueDoc)}>
                                          <span>
                                             Отправить
                                          </span>

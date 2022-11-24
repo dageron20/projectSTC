@@ -8,13 +8,19 @@
     "@testing-library/user-event": "^13.5.0",
     "base64json": "^1.0.3",
     "buffer": "^6.0.3",
+<<<<<<< HEAD
     "express-ws": "^5.0.2",
+=======
+    "os": "^0.1.2",
+>>>>>>> master
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.3",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4",
-    "webpack-dev-server": "^4.11.1"
+    "webpack-dev-server": "^4.11.1",
+    "websocket": "^1.0.34",
+    "ws": "^8.11.0"
   },
   "scripts": {
     "start": "webpack-dev-server --mode development --open --hot",

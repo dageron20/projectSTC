@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from "react";
 import ItemUser from "../itemUser/ItemUser";
 import { Buffer } from 'buffer';
 
-    const ListUser = ({clients, state, setState, setUserIp}) => {
+    const ListUser = ({clients, isOpenedSettings, setState, setUserIp}) => {
         const key = 'clients'
         const [file, setFile] = useState();
         const [fileurl, setFileurl] = useState();
@@ -69,7 +69,7 @@ import { Buffer } from 'buffer';
                            accept=".json"/>
                 </form>
 
-                {state ?
+                {isOpenedSettings ?
                     <div className="list-users-settings">
                         <div className="list-users-settings-window">
                             <span>IP</span>
@@ -82,14 +82,11 @@ import { Buffer } from 'buffer';
                 }
                 <div className="list-users-settings-button">
                     <a className="list-users-settings-button-gearWhee " onClick={() => {
-                        if (state === false) setState(true); else setState(false)
+                        if (isOpenedSettings === false) setState(true); else setState(false)
                     }}>
                         <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                              width="32px" height="32px" viewBox="0 0 1280.000000 1280.000000"
                              preserveAspectRatio="xMidYMid meet">
-                            <metadata>
-                                Created by potrace 1.15, written by Peter Selinger 2001-2017
-                            </metadata>
                             <g transform="translate(0.000000,1280.000000) scale(0.100000,-0.100000)"
                                fill="#000000" stroke="none">
                                 <path d="M5860 12792 c0 -4 -29 -174 -65 -377 -36 -204 -95 -541 -131 -750

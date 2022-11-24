@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import './styles/index.css';
 import BottomDocument from "./components/BottomDocument/BottomDocument";
 import ChooseDocument from "./components/chooseDocumentButton/ChooseDocument";
@@ -6,6 +6,8 @@ import CurrentDocument from "./components/currentDocument/CurrentDocument";
 import ListUser from "./components/listUsers/ListUser";
 import Messages from "./components/Messages/Messages";
 import ItemMessage from "./components/ItemMessage/ItemMessage";
+
+
 
 function App({events, clients}) {
     const [isOpened, setIsOpened] = useState(false);
@@ -20,19 +22,23 @@ function App({events, clients}) {
         })
     }
 
-    const [isOpenedSettings, setIsOpenedSettings] = useState(true);
+    const [isOpenedSettings, setIsOpenedSettings] = useState(false);
     const [userIp, setUserIp] = useState();
     const [valueDoc, setValueDoc] = useState()
 
     const ws = new WebSocket('ws://192.168.31.14:3000');
 
-    ws.onopen = () => {
-        console.log('Подключение установлено')
-        ws.send(JSON.stringify({
-            method: "connection",
-            id: 11,
-        }))
-    }
+    useEffect(() => {
+        ws.onopen = () => {
+            console.log('Подключение установлено')
+
+            // ws.send(JSON.stringify({
+            //     method: "connection",
+            //     id: 9,
+            // }))
+        }
+        return () => ws.close();
+    }, [])
 
 
     return (
@@ -42,7 +48,7 @@ function App({events, clients}) {
                     <main className="main">
                         <div className="main-container">
                             <div className="work-flow">
-                                <ListUser clients={clients} state={isOpenedSettings} setState={setIsOpenedSettings} setUserIp={setUserIp} />
+                                <ListUser clients={clients} isOpenedSettings={isOpenedSettings} setState={setIsOpenedSettings} setUserIp={setUserIp} />
                                 <div className="document-flow">
                                     {
                                         isOpened ?
