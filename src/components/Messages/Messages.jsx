@@ -1,22 +1,30 @@
 import React, {useEffect, useState} from "react";
 import ItemUser from "../itemUser/ItemUser";
 import ItemMessage from "../ItemMessage/ItemMessage";
+const os = require('os');
 
 
 const Messages = ({ws}) => {
     const [data, setData] = useState(null);
 
-    ws.onmessage = (event) => {
-        console.log('С сервера пришло сообщение:', event.data)
-        const lastObj = JSON.parse(localStorage.getItem(localStorage.length))
-        const obj = JSON.parse(event.data)
-        if(lastObj === null)
-            obj.id = 1
-        else
-            obj.id = lastObj.id + 1
-        localStorage.setItem(obj.id, JSON.stringify(obj))
-        setData(obj)
-    }
+    useEffect(() => {
+        ws.onmessage = (event) => {
+            console.log('С сервера пришло сообщение:', event.data)
+            const lastObj = JSON.parse(localStorage.getItem(localStorage.length))
+            const obj = JSON.parse(event.data)
+            if(lastObj === null)
+                obj.id = 1
+            else
+                obj.id = lastObj.id + 1
+            localStorage.setItem(obj.id, JSON.stringify(obj))
+            setData(obj)
+            // console.log("IPsender", obj.ipSender)
+            // console.log("IPRecipient", obj.ipRecipient)
+            // console.log("IPCurr", obj.ipCurr)
+        }
+        return () => ws.close();
+    }, [])
+
 
     useEffect(() => {
     }, [data])
