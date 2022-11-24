@@ -37,10 +37,13 @@ const connectionHandler = (ws, msg) => {
 
 const sendMsgToIp = (ws, req, msg) => {
     const ip = req.socket.remoteAddress.replace(/^.*:/, '');
-    if(msg.ip === ip) {
-        ws.send(JSON.stringify(msg))
-        console.log("sendMsgToIp")
-    }
+    server.clients.forEach(client => {
+        client.send(JSON.stringify(msg));
+    })
+    // if(msg.ip === ip) {
+    //     ws.send(JSON.stringify(msg))
+    //     console.log("sendMsgToIp")
+    // }
 }
 
 // ws.on('message', message => {
