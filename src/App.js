@@ -1,16 +1,19 @@
 import React, {useEffect, useRef, useState} from "react";
 import './styles/index.css';
-import BottomDocument from "./components/BottomDocument";
+import BottomDocument from "./components/BottomDocument/BottomDocument";
 import ChooseDocument from "./components/chooseDocumentButton/ChooseDocument";
 import CurrentDocument from "./components/currentDocument/CurrentDocument";
-import ListUser from "./components/listUsers";
+import ListUser from "./components/listUsers/ListUser";
 import Messages from "./components/Messages/Messages";
-import ItemMessage from "./components/ItemMessage/ItemMessage";
+
 
 function App({clients}) {
 
     const [isOpenedSettings, setIsOpenedSettings] = useState(false);
     const [isOpened, setIsOpened] = useState(false);
+    const [valueDoc, setValueDoc] = useState()
+    const [data, setData] = useState(null);
+
     function handleChangeOpened()  {
         setIsOpened((prevState) => {
             return prevState = true;
@@ -31,7 +34,6 @@ function App({clients}) {
         }
         ws.current.onmessage = (event) => {
             // console.log('С сервера пришло сообщение:', event.data)
-
             const lastObj = JSON.parse(localStorage.getItem(localStorage.length))
             const obj = JSON.parse(event.data)
             if(lastObj === null)
@@ -40,7 +42,6 @@ function App({clients}) {
                 obj.id = lastObj.id + 1
             localStorage.setItem(obj.id, JSON.stringify(obj))
             setData(obj)
-
         }
 
         ws.current.onclose = () => {
@@ -52,9 +53,12 @@ function App({clients}) {
         }
     }, [data])
 
-
     const sendMsg = (userIp, valueDoc) => {
-
+        const date = new Date();
+        const hour = date.getHours();
+        const minutes = date.getMinutes();
+        const time = hour + ":" + minutes;
+        console.log(time);
         const obj = {
             method: "message",
             ipRecipient : userIp,
@@ -74,7 +78,7 @@ function App({clients}) {
                     <main className="main">
                         <div className="main-container">
                             <div className="work-flow">
-                                <ListUser clients={clients} isOpenedSettings={isOpenedSettings} setState={setIsOpenedSettings} setUserIp={setUserIp} />
+                                <ListUser clients={clients} isOpenedSettings={isOpenedSettings} setState={setIsOpenedSettings} />
                                 <div className="document-flow">
                                     {
                                         isOpened ?
@@ -82,11 +86,7 @@ function App({clients}) {
                                             :
                                             <ChooseDocument qwe={handleChangeOpened} />
                                     }
-
-                                    <BottomDocument userIp={userIp} valueDoc={valueDoc} sendMsg={sendMsg} />
-
                                     <BottomDocument  valueDoc={valueDoc} sendMsg={sendMsg} />
-
                                 </div>
                                 <Messages />
                             </div>
@@ -97,7 +97,6 @@ function App({clients}) {
         </>
 
     );
-
 }
 
 export default App;

@@ -7,15 +7,17 @@ const os = require('os');
 const Messages = () => {
 
     return (
-        <aside className="list-messages">
+        <aside className="list-users">
+            <div>
                 <h1 className="all-message">Входящие сообщения</h1>
                 {
                     localStorage.length === 0
                     ?
-                        <div className="noMessage">Новые сообщения отсутствуют</div>
+                        "пока пусто"
                     :
                         (new Array(localStorage.length).fill().map((e, i) => i + 1)).map(i => <ItemMessage message={JSON.parse(localStorage.getItem(i))} key={JSON.parse(localStorage.getItem(i)).id} />)
                 }
+            </div>
         </aside>
     )
 }
