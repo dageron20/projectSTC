@@ -1,7 +1,10 @@
 import React from "react";
+import {useDispatch} from "react-redux";
+import {setValueDoc} from "../../toolkitRedux/toolkitSlice";
 
-const CurrentDocument = ({qwe, setValueDoc}) => {
+const CurrentDocument = ({qwe, }) => {
 
+    const dispatch = useDispatch()
 
     return (
         <div className="current-document">
@@ -16,7 +19,7 @@ const CurrentDocument = ({qwe, setValueDoc}) => {
             <div className="current-document-container">
                 <div className="current-document-container-identity">
                     <span>идентификатор распоряжения</span>
-                    <input type="text" placeholder="Placeholder" onChange={(e) => {setValueDoc(e.target.value)}}/>
+                    <input type="text" placeholder="Placeholder" onChange={(e) => {dispatch(setValueDoc(e.target.value))}}/>
                     <span className="identity-subtitle">Текст пояснения</span>
                 </div>
                 <div className="current-document-container-project">

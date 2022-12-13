@@ -7,7 +7,7 @@ const os = require('os');
 const Messages = () => {
 
     return (
-        <aside className="list-users">
+        <aside className="list-messages">
             <div>
                 <h1 className="all-message">Входящие сообщения</h1>
                 {

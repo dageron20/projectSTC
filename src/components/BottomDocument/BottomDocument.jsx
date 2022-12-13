@@ -3,10 +3,30 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {decrement, increment} from "../../toolkitRedux/toolkitSlice";
 
-const BottomDocument = ({valueDoc, sendMsg}) => {
+const BottomDocument = ({wsSendMsg}) => {
     const count = useSelector(state => state.toolkit.count)
     const userIp = useSelector(state => state.toolkit.userIp)
+    const valueDoc = useSelector(state => state.toolkit.valueDoc)
     const dispatch = useDispatch()
+
+    const sendMsg = (userIp, valueDoc) => {
+        const date = new Date();
+        const hour = date.getHours();
+        const minutes = date.getMinutes();
+        const time = hour + ":" + minutes;
+        console.log(time);
+        const obj = {
+            method: "message",
+            ipRecipient : userIp,
+            ipSender: '',
+            ipCurr: '',
+            id: '',
+            message: valueDoc,
+            timestamp: time,
+        }
+        wsSendMsg(obj)
+    }
+
     return (
         <div className="bottom-document">
             <div className="left-menu">

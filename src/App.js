@@ -7,11 +7,10 @@ import ListUser from "./components/listUsers/ListUser";
 import Messages from "./components/Messages/Messages";
 
 
-function App({clients}) {
+function App({}) {
 
     const [isOpenedSettings, setIsOpenedSettings] = useState(false);
     const [isOpened, setIsOpened] = useState(false);
-    const [valueDoc, setValueDoc] = useState()
     const [data, setData] = useState(null);
 
     function handleChangeOpened()  {
@@ -53,21 +52,7 @@ function App({clients}) {
         }
     }, [data])
 
-    const sendMsg = (userIp, valueDoc) => {
-        const date = new Date();
-        const hour = date.getHours();
-        const minutes = date.getMinutes();
-        const time = hour + ":" + minutes;
-        console.log(time);
-        const obj = {
-            method: "message",
-            ipRecipient : userIp,
-            ipSender: '',
-            ipCurr: '',
-            id: '',
-            message: valueDoc,
-            timestamp: time,
-        }
+    const wsSendMsg = (obj) =>{
         ws.current.send(JSON.stringify(obj));
     }
 
@@ -78,15 +63,15 @@ function App({clients}) {
                     <main className="main">
                         <div className="main-container">
                             <div className="work-flow">
-                                <ListUser clients={clients} isOpenedSettings={isOpenedSettings} setState={setIsOpenedSettings} />
+                                <ListUser isOpenedSettings={isOpenedSettings} setState={setIsOpenedSettings} />
                                 <div className="document-flow">
                                     {
                                         isOpened ?
-                                            <CurrentDocument qwe={handleChangeClose} setValueDoc={setValueDoc} />
+                                            <CurrentDocument qwe={handleChangeClose} />
                                             :
                                             <ChooseDocument qwe={handleChangeOpened} />
                                     }
-                                    <BottomDocument  valueDoc={valueDoc} sendMsg={sendMsg} />
+                                    <BottomDocument wsSendMsg={wsSendMsg} />
                                 </div>
                                 <Messages />
                             </div>

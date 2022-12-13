@@ -4,7 +4,8 @@ const toolkitSlice = createSlice({
     name: "toolkit",
     initialState: {
         count: 0,
-        userIp: ''
+        userIp: '',
+        valueDoc: ''
     },
     reducers: {
         increment(state) {
@@ -17,9 +18,12 @@ const toolkitSlice = createSlice({
         },
         setUserIp(state, action){
             state.userIp = action.payload
+        },
+        setValueDoc(state, action){
+            state.valueDoc = action.payload
         }
     }
 })
 
 export default toolkitSlice.reducer
-export const {increment, decrement, setUserIp} = toolkitSlice.actions
+export const {increment, decrement, setUserIp, setValueDoc} = toolkitSlice.actions
