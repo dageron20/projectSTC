@@ -2,13 +2,18 @@ const {client, connection} = require("websocket");
 const {WebSocketServer} = require("ws");
 const req = require("websocket/lib/WebSocketClient");
 
-const server = new WebSocketServer({ port: 3000 })
+const server = new WebSocketServer({ port: 9399 })
 
-server.on('connection', function connection(ws, req) {
+const clients = {};
+
+server.on('connection', function(ws, req) {
+    clients[req.headers.origin] = ws
+    console.log("req.headers.origin: " + req.headers.origin)
     ws.on('message', msg => {
         msg = JSON.parse(msg)
         const ip = req.socket.remoteAddress.replace(/^.*:/, '');
         msg.ipCurr = ip
+        console.log("ipCurr: " + ip)
         switch (msg.method) {
             case "message":
                 sendMsgToIp(ws, req, msg)
@@ -29,9 +34,17 @@ server.on('connection', function connection(ws, req) {
 const sendMsgToIp = (ws, req, msg) => {
     const ip = req.socket.remoteAddress.replace(/^.*:/, '');
     msg.ipSender = ip
+    console.log("ipSender: " + msg.ipSender)
+    console.log("ipRecipient: " + msg.ipRecipient)
     // console.log(`IpMsg:${msg.ip} IpCurr: ${ip}`)
     console.log("sendMsgToIp")
-    server.clients.forEach(client => {
-        client.send(JSON.stringify(msg))
-    })
+    // console.log(ws);
+    console.log(req.headers.origin);
+    // console.log(msg);
+    // console.log(clients);
+    const wss = clients[`http://${msg.ipRecipient}:8080`];
+    if(wss) {
+        wss.send(JSON.stringify(msg));
+    } else
+        console.log("exeption")
 }

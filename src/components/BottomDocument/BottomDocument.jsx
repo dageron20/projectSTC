@@ -1,30 +1,12 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
-const BottomDocument = ({ws, userIp, valueDoc}) => {
-    const [counter, setCounter] = useState(1);
+import {useDispatch, useSelector} from "react-redux";
+import {decrement, increment} from "../../toolkitRedux/toolkitSlice";
 
-    const handleClickMinus = () => {
-        if(counter > 0)
-            setCounter(counter - 1)
-    }
-    const handleClickPlus = () => {
-        if(counter < 100)
-            setCounter(counter + 1)
-    }
-
-    function sendMsg (userIp, valueDoc){
-        const obj = {
-            method: "message",
-            ipRecipient : userIp,
-            ipSender: '',
-            ipCurr: '',
-            id : '',
-            message: valueDoc,
-        }
-        ws.send(JSON.stringify(obj))
-        // return JSON.stringify(obj)
-    }
-
+const BottomDocument = ({valueDoc, sendMsg}) => {
+    const count = useSelector(state => state.toolkit.count)
+    const userIp = useSelector(state => state.toolkit.userIp)
+    const dispatch = useDispatch()
     return (
         <div className="bottom-document">
             <div className="left-menu">
@@ -33,17 +15,17 @@ const BottomDocument = ({ws, userIp, valueDoc}) => {
             <div className="right-menu">
                 <p>Колличесвто отправок</p>
                 <div className='box-spinner'>
-                    <div className='in-num'> {counter}</div>
-                    <div className="module-strip"></div>
-                    <div className="module-minus" onClick={handleClickMinus}>
-                        <div className="minus"></div>
+                    <div className='in-num'> {count}</div>
+                    <div className="module-strip"/>
+                    <div className="module-minus" onClick={() => dispatch(decrement())}>
+                        <div className="minus"/>
                     </div>
-                    <div className="module-plus" onClick={handleClickPlus}>
-                        <div className="plus"></div>
+                    <div className="module-plus" onClick={() => dispatch(increment())}>
+                        <div className="plus"/>
                     </div>
                 </div>
                 {/*<button disabled className='btn-send'>Отправить</button>*/}
-                <button className='btn-send-true' onClick={() => sendMsg(userIp, valueDoc)}>
+                <button className='btn-send-true' onClick={() => {sendMsg(userIp, valueDoc)}}>
                                          <span>
                                             Отправить
                                          </span>

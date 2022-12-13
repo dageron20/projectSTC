@@ -1,16 +1,19 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import './styles/index.css';
 import BottomDocument from "./components/BottomDocument/BottomDocument";
 import ChooseDocument from "./components/chooseDocumentButton/ChooseDocument";
 import CurrentDocument from "./components/currentDocument/CurrentDocument";
 import ListUser from "./components/listUsers/ListUser";
 import Messages from "./components/Messages/Messages";
-import ItemMessage from "./components/ItemMessage/ItemMessage";
 
 
+function App({clients}) {
 
-function App({events, clients}) {
+    const [isOpenedSettings, setIsOpenedSettings] = useState(false);
     const [isOpened, setIsOpened] = useState(false);
+    const [valueDoc, setValueDoc] = useState()
+    const [data, setData] = useState(null);
+
     function handleChangeOpened()  {
         setIsOpened((prevState) => {
             return prevState = true;
@@ -22,24 +25,45 @@ function App({events, clients}) {
         })
     }
 
-    const [isOpenedSettings, setIsOpenedSettings] = useState(false);
-    const [userIp, setUserIp] = useState();
-    const [valueDoc, setValueDoc] = useState()
-
-    const ws = new WebSocket('ws://192.168.31.14:3000');
+    const ws = useRef();
 
     useEffect(() => {
-        ws.onopen = () => {
-            console.log('Подключение установлено')
-
-            // ws.send(JSON.stringify({
-            //     method: "connection",
-            //     id: 9,
-            // }))
+        ws.current = new WebSocket("ws://192.168.31.14:9399");
+        ws.current.onopen = () => {
+            console.log("ws opened");
         }
-        return () => ws.close();
-    }, [])
+        ws.current.onmessage = (event) => {
+            // console.log('С сервера пришло сообщение:', event.data)
+            const lastObj = JSON.parse(localStorage.getItem(localStorage.length))
+            const obj = JSON.parse(event.data)
+            if(lastObj === null)
+                obj.id = 1
+            else
+                obj.id = lastObj.id + 1
+            localStorage.setItem(obj.id, JSON.stringify(obj))
+            setData(obj)
+        }
 
+        ws.current.onclose = () => {
+            console.log("ws closed");
+        }
+
+        ws.current.onerror = () => {
+            console.log('Socket ошибка')
+        }
+    }, [data])
+
+    const sendMsg = (userIp, valueDoc) => {
+        const obj = {
+            method: "message",
+            ipRecipient : userIp,
+            ipSender: '',
+            ipCurr: '',
+            id : '',
+            message: valueDoc,
+        }
+        ws.current.send(JSON.stringify(obj));
+    }
 
     return (
         <>
@@ -48,17 +72,17 @@ function App({events, clients}) {
                     <main className="main">
                         <div className="main-container">
                             <div className="work-flow">
-                                <ListUser clients={clients} isOpenedSettings={isOpenedSettings} setState={setIsOpenedSettings} setUserIp={setUserIp} />
+                                <ListUser clients={clients} isOpenedSettings={isOpenedSettings} setState={setIsOpenedSettings} />
                                 <div className="document-flow">
                                     {
                                         isOpened ?
                                             <CurrentDocument qwe={handleChangeClose} setValueDoc={setValueDoc} />
-                                                 :
+                                            :
                                             <ChooseDocument qwe={handleChangeOpened} />
                                     }
-                                    <BottomDocument ws={ws} userIp={userIp} valueDoc={valueDoc} />
+                                    <BottomDocument  valueDoc={valueDoc} sendMsg={sendMsg} />
                                 </div>
-                                <Messages ws={ws} />
+                                <Messages />
                             </div>
                         </div>
                     </main>
@@ -66,7 +90,7 @@ function App({events, clients}) {
             </div>
         </>
 
-  );
+    );
 }
 
 export default App;

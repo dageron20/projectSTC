@@ -2,94 +2,72 @@ import React, {useEffect, useRef, useState} from "react";
 import ItemUser from "../itemUser/ItemUser";
 import { Buffer } from 'buffer';
 
-    const ListUser = ({clients, isOpenedSettings, setState, setUserIp}) => {
-        const key = 'clients'
-        const [file, setFile] = useState();
-        const [fileurl, setFileurl] = useState();
-        const [jsonfile, setJsonfile] = useState();
-        const fileReader = new FileReader();
-        const [data, setData] = useState()
-        fileReader.onloadend = () => {
-            setFileurl(fileReader.result);
-            const obj = JSON.parse(JSON.stringify(fileReader.result));
-            const json = Buffer.from(obj.substring(29), "base64").toString();
-            const result = JSON.parse(json);
-            sessionStorage.setItem(key, JSON.stringify(result))
-            // console.log(JSON.stringify(sessionStorage.getItem(key)))
-            // console.log(sessionStorage.getItem(key))
-            // console.log(JSON.parse(sessionStorage.getItem(key)))
-            getClients()
-            // console.log(result);
-            setJsonfile(result);
-        };
+const ListUser = ({isOpenedSettings, setState}) => {
+    const key = 'clients'
+    const [update, setUpdate] = useState(true);
+    const fileReader = new FileReader();
+    fileReader.onloadend = () => {
+        const obj = JSON.parse(JSON.stringify(fileReader.result));
+        const json = Buffer.from(obj.substring(29), "base64").toString();
+        const result = JSON.parse(json);
+        sessionStorage.setItem(key, JSON.stringify(result))
+        setUpdate(false)
+    };
 
-        const getClients = () => {
-            setData(sessionStorage.getItem(key))
+    fileReader.addEventListener('progress', (event) => { /* Процент загрузки json файла в console */
+        if (event.loaded && event.total) {
+            const percent = (event.loaded / event.total) * 100;
+            console.log(`Progress: ${Math.round(percent)}`);
         }
+    });
 
-        fileReader.addEventListener('progress', (event) => { /* Процент загрузки json файла в console */
-            if (event.loaded && event.total) {
-                const percent = (event.loaded / event.total) * 100;
-                console.log(`Progress: ${Math.round(percent)}`);
+    const handleOnChange = (event) => {
+        event.preventDefault();
+        const clients2 = event.target.files[0];
+        fileReader.readAsDataURL(clients2);
+    }
+
+
+    return (
+        <aside className="list-users">
+            <div className="all-users">
+                <input type="checkbox" id="users1" name="users"/>
+                <label htmlFor="users1">Пользователи</label>
+            </div>
+            {sessionStorage.length === 0
+                ?
+                "выберите пользовтаеля"
+                :
+                (JSON.parse(sessionStorage.getItem(key))).map(element => <ItemUser key={element.ip} data={element}/>)
             }
-        });
 
-        const handleOnChange = (event) => {
-            event.preventDefault();
-            const clients2 = event.target.files[0];
-            setFile(clients2);
-            fileReader.readAsDataURL(clients2);
-        }
+            <form>
+                <input type="file"
+                       onChange={handleOnChange}
+                       accept=".json"/>
+            </form>
 
-
-
-        // useEffect(() => {
-        //     console.log('useEffect')
-        // }, [jsonfile])
-
-        return (
-            <aside className="list-users">
-                <div className="all-users">
-                    <input type="checkbox" id="users1" name="users"/>
-                    <label htmlFor="users1">Пользователи</label>
-                </div>
-                {/*{jsonfile ? jsonfile.map(jsonfile => <ItemUser {...jsonfile} key={jsonfile.ip}*/}
-                {/*                                               jsonfile={jsonfile}/>) : "Пользователи не выбраны"}*/}
-
-                {sessionStorage.length === 0
-                    ?
-                    "выберите пользовтаеля"
-                    :
-                    (JSON.parse(sessionStorage.getItem(key))).map(element => <ItemUser key={element.ip} data={element} setUserIp={setUserIp}/>)
-                }
-
-                <form>
-                    <input type="file"
-                           onChange={handleOnChange}
-                           accept=".json"/>
-                </form>
-
-                {isOpenedSettings ?
-                    <div className="list-users-settings">
-                        <div className="list-users-settings-window">
-                            <span>IP</span>
-                            <input type="text" placeholder="Введите свой ip"/>
-                            <button>Сохранить</button>
-                        </div>
+            {isOpenedSettings ?
+                <div className="list-users-settings">
+                    <div className="list-users-settings-window">
+                        <span>IP</span>
+                        <input type="text" placeholder="Введите свой ip"/>
+                        <button>Сохранить</button>
                     </div>
-                    :
-                    <div></div>
-                }
-                <div className="list-users-settings-button">
-                    <a className="list-users-settings-button-gearWhee " onClick={() => {
-                        if (isOpenedSettings === false) setState(true); else setState(false)
-                    }}>
-                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-                             width="32px" height="32px" viewBox="0 0 1280.000000 1280.000000"
-                             preserveAspectRatio="xMidYMid meet">
-                            <g transform="translate(0.000000,1280.000000) scale(0.100000,-0.100000)"
-                               fill="#000000" stroke="none">
-                                <path d="M5860 12792 c0 -4 -29 -174 -65 -377 -36 -204 -95 -541 -131 -750
+                </div>
+                :
+                <div></div>
+            }
+            <div className="list-users-settings-button">
+                <a className="list-users-settings-button-gearWhee " onClick={() => {
+                    if (isOpenedSettings === false) setState(true); else setState(false)
+                }}>
+                    <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+                         width="32px" height="32px" viewBox="0 0 1280.000000 1280.000000"
+                         preserveAspectRatio="xMidYMid meet">
+                        <g transform="translate(0.000000,1280.000000) scale(0.100000,-0.100000)"
+                           fill="#000000" stroke="none">
+                            <path d="M5860 12792 c0 -4 -29 -174 -65 -377 -36 -204 -95 -541 -131 -750
         -37 -209 -68 -381 -69 -383 -1 -1 -61 -14 -133 -27 -233 -45 -467 -108 -691
         -187 -110 -38 -114 -39 -131 -21 -9 10 -225 268 -480 573 -255 305 -470 563
         -480 573 -16 17 -38 5 -476 -248 -252 -146 -460 -269 -462 -274 -2 -5 115
@@ -129,12 +107,12 @@ import { Buffer } from 'buffer';
         -640 46 -1177 199 -2203 959 -2740 2030 -295 587 -425 1198 -398 1870 48 1199
         680 2316 1688 2983 502 332 1046 531 1658 606 96 12 405 28 457 23 17 -1 98
         -5 180 -7z"/>
-                            </g>
-                        </svg>
-                    </a>
-                </div>
-            </aside>
-        )
+                        </g>
+                    </svg>
+                </a>
+            </div>
+        </aside>
+    )
 }
 
 export default ListUser;
