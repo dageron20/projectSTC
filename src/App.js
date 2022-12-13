@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import './styles/index.css';
 import BottomDocument from "./components/BottomDocument/BottomDocument";
 import ChooseDocument from "./components/chooseDocumentButton/ChooseDocument";
@@ -6,8 +6,6 @@ import CurrentDocument from "./components/currentDocument/CurrentDocument";
 import ListUser from "./components/listUsers/ListUser";
 import Messages from "./components/Messages/Messages";
 import ItemMessage from "./components/ItemMessage/ItemMessage";
-
-
 
 function App({events, clients}) {
     const [isOpened, setIsOpened] = useState(false);
@@ -26,19 +24,59 @@ function App({events, clients}) {
     const [userIp, setUserIp] = useState();
     const [valueDoc, setValueDoc] = useState()
 
+    const [data, setData] = useState(null);
+    const [obj, setObj] = useState();
+
+    const ws = useRef();
+    const [connected, setConnected] = useState(false);
 
     useEffect(() => {
-        ws.onopen = () => {
-            console.log('Подключение установлено')
-
-            // ws.send(JSON.stringify({
-            //     method: "connection",
-            //     id: 9,
-            // }))
+        ws.current = new WebSocket("ws://192.168.0.103:9399");
+        ws.current.onopen = () => {
+            setConnected(true);
+            console.log("ws opened");
         }
-        return () => ws.close();
+        ws.current.onmessage = (event) => {
+            console.log('С сервера пришло сообщение:', event.data)
+            const lastObj = JSON.parse(localStorage.getItem(localStorage.length))
+            const obj = JSON.parse(event.data)
+            if(lastObj === null)
+                obj.id = 1
+            else
+                obj.id = lastObj.id + 1
+            localStorage.setItem(obj.id, JSON.stringify(obj))
+            setData(obj)
+        }
+
+        ws.current.onclose = () => {
+            console.log("ws closed");
+        }
+
+        ws.current.onerror = () => {
+            console.log('Socket ошибка')
+        }
     }, [])
 
+    useEffect(() => {
+    }, [data])
+
+    const sendMsg = (userIp, valueDoc) => {
+        const date = new Date();
+        const hour = date.getHours();
+        const minutes = date.getMinutes();
+        const time = hour + ":" + minutes;
+        console.log(time);
+        const obj = {
+            method: "message",
+            ipRecipient : userIp,
+            ipSender: '',
+            ipCurr: '',
+            id: '',
+            message: valueDoc,
+            timestamp: time,
+        }
+        ws.current.send(JSON.stringify(obj));
+    }
 
     return (
         <>
@@ -52,12 +90,12 @@ function App({events, clients}) {
                                     {
                                         isOpened ?
                                             <CurrentDocument qwe={handleChangeClose} setValueDoc={setValueDoc} />
-                                                 :
+                                            :
                                             <ChooseDocument qwe={handleChangeOpened} />
                                     }
-                                    <BottomDocument ws={ws} userIp={userIp} valueDoc={valueDoc} />
+                                    <BottomDocument userIp={userIp} valueDoc={valueDoc} sendMsg={sendMsg} />
                                 </div>
-                                <Messages ws={ws} />
+                                <Messages />
                             </div>
                         </div>
                     </main>
@@ -65,7 +103,7 @@ function App({events, clients}) {
             </div>
         </>
 
-  );
+    );
 }
 
 export default App;

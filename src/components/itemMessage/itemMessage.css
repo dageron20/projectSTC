@@ -1,56 +1,24 @@
-aside {
+.message-field {
   display: flex;
   flex-direction: column;
-  position: relative;
-  width: 304px;
-  border-right: 1px solid #C8CACC;
-  border-left: 1px solid #C8CACC;
-  font-family: "Inter-Bold", sans-serif;
-  font-weight: 700;
-}
-aside-button {
-  height: 32px;
-  width: 32px;
-  position: absolute;
-  left: 260px;
-  bottom: 12px;
-}
-aside .all-message {
-  height: 50px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  border-bottom: 1px solid #C8CACC;
-  -webkit-user-select: none;
   font-family: "Inter-SemiBold", sans-serif;
   font-weight: 600;
 }
-aside .all-message .message-field {
+.message-field .item-message {
   display: flex;
-  flex-direction: row;
-  padding: 15px 0;
+  flex-direction: column;
+  padding: 15px;
   justify-content: space-between;
-  align-items: center;
   -webkit-user-select: none;
+  cursor: pointer;
 }
-aside .all-message .message-field:hover {
+.message-field .item-message:hover {
   background: #E6F6F1;
 }
-aside .all-message .title-user {
+.message-field .item-message-info {
   display: flex;
-  flex-direction: column;
-}
-aside .all-message .title-user .naming {
-  font-weight: 600;
-  font-size: 13px;
-  line-height: 16px;
-  color: rgba(40, 43, 45, 0.92);
-  font-family: "Inter-SemiBold", sans-serif;
-  font-weight: 600;
-}
-aside .all-message .title-user .job {
-  font-weight: 400;
+  flex-direction: row;
+  justify-content: space-between;
   font-size: 12px;
   line-height: 16px;
   color: rgba(40, 43, 45, 0.6);

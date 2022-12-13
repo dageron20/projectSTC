@@ -1,21 +1,13 @@
-aside {
+.list-messages {
   display: flex;
   flex-direction: column;
   position: relative;
   width: 304px;
   border-right: 1px solid #C8CACC;
-  border-left: 1px solid #C8CACC;
-  font-family: "Inter-Bold", sans-serif;
-  font-weight: 700;
+  overflow-y: scroll;
 }
-aside-button {
-  height: 32px;
-  width: 32px;
-  position: absolute;
-  left: 260px;
-  bottom: 12px;
-}
-aside .all-message {
+
+.all-message {
   height: 50px;
   display: flex;
   flex-direction: row;
@@ -25,98 +17,6 @@ aside .all-message {
   -webkit-user-select: none;
   font-family: "Inter-SemiBold", sans-serif;
   font-weight: 600;
-}
-aside .all-message .message-field {
-  display: flex;
-  flex-direction: row;
-  padding: 15px 0;
-  justify-content: space-between;
-  align-items: center;
-  -webkit-user-select: none;
-}
-aside .all-message .message-field:hover {
-  background: #E6F6F1;
-}
-aside .all-message .message-field .job {
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 16px;
-  color: rgba(40, 43, 45, 0.6);
-  font-family: "Inter-Regular", sans-serif;
-  font-weight: 400;
-}
-aside .all-message .all-message {
-  height: 50px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-bottom: 1px solid #C8CACC;
-  -webkit-user-select: none;
-  font-family: "Inter-SemiBold", sans-serif;
-  font-weight: 600;
-}
-aside .all-message .all-message label {
-  font-style: normal;
-  font-weight: 600;
-  font-size: 15px;
-  line-height: 19px;
-}
-aside .all-message .all-message input:checked + label:after {
-  top: 5px;
-  left: 20px;
-  width: 12px;
-  height: 7px;
-  border-left: 2px solid #FCFCFD;
-  border-bottom: 2px solid #FCFCFD;
-  -ms-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-}
-aside .all-message .item-user {
-  display: flex;
-  flex-direction: row;
-  padding: 15px 0;
-  justify-content: space-between;
-  align-items: center;
-  -webkit-user-select: none;
-}
-aside .all-message .item-user:hover {
-  background: #E6F6F1;
-}
-aside .all-message .item-user .title-user {
-  display: flex;
-  flex-direction: column;
-}
-aside .all-message .item-user .title-user .naming {
-  font-weight: 600;
-  font-size: 13px;
-  line-height: 16px;
-  color: rgba(40, 43, 45, 0.92);
-  font-family: "Inter-SemiBold", sans-serif;
-  font-weight: 600;
-}
-aside .all-message .item-user .title-user .job {
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 16px;
-  color: rgba(40, 43, 45, 0.6);
-  font-family: "Inter-Regular", sans-serif;
-  font-weight: 400;
-}
-aside .all-message .item-user .counter-cycle {
-  width: 16px;
-  height: 16px;
-  margin-right: 16px;
-  background-color: #38A88F;
-  color: rgba(252, 252, 253, 0.92);
-  border-radius: 50%;
-  font-weight: 700;
-  font-size: 11px;
-  line-height: 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  letter-spacing: 0.02em;
 }
 
 /*# sourceMappingURL=messages.css.map */

@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
-const BottomDocument = ({ws, userIp, valueDoc}) => {
+const BottomDocument = ({userIp, valueDoc, sendMsg}) => {
     const [counter, setCounter] = useState(1);
+
 
     const handleClickMinus = () => {
         if(counter > 0)
@@ -12,18 +13,6 @@ const BottomDocument = ({ws, userIp, valueDoc}) => {
             setCounter(counter + 1)
     }
 
-    function sendMsg (userIp, valueDoc){
-        const obj = {
-            method: "message",
-            ipRecipient : userIp,
-            ipSender: '',
-            ipCurr: '',
-            id : '',
-            message: valueDoc,
-        }
-        ws.send(JSON.stringify(obj))
-        // return JSON.stringify(obj)
-    }
 
     return (
         <div className="bottom-document">

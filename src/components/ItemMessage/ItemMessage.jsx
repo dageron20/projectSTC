@@ -4,7 +4,19 @@ import React from "react";
 const ItemMessage = ({message}) => {
     return (
         <div className='message-field' onClick={() => {}}>
-            <span>Сообщение: {message.message}, с ID: {message.id}</span>
+            <div className="item-message">
+                <div className="item-message-info">
+                    <div className="item-message-info-id">
+                        <span>ID {message.id}</span>
+                    </div>
+                    <div className="item-message-info-time">
+                        <span>{message.timestamp}</span>
+                    </div>
+                </div>
+                <div className="item-message-content">
+                    <span>{message.message}</span>
+                </div>
+            </div>
         </div>
     )
 }
