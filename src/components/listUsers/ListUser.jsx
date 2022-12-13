@@ -2,6 +2,7 @@ import React, {useEffect, useRef, useState} from "react";
 import ItemUser from "../itemUser/ItemUser";
 import { Buffer } from 'buffer';
 
+<<<<<<< HEAD
 const ListUser = ({clients, isOpenedSettings, setState, setUserIp}) => {
     const key = 'clients'
     const [file, setFile] = useState();
@@ -11,10 +12,18 @@ const ListUser = ({clients, isOpenedSettings, setState, setUserIp}) => {
     const [data, setData] = useState()
     fileReader.onloadend = () => {
         setFileurl(fileReader.result);
+=======
+const ListUser = ({isOpenedSettings, setState}) => {
+    const key = 'clients'
+    const [update, setUpdate] = useState(true);
+    const fileReader = new FileReader();
+    fileReader.onloadend = () => {
+>>>>>>> caskey99
         const obj = JSON.parse(JSON.stringify(fileReader.result));
         const json = Buffer.from(obj.substring(29), "base64").toString();
         const result = JSON.parse(json);
         sessionStorage.setItem(key, JSON.stringify(result))
+<<<<<<< HEAD
         getClients()
         setJsonfile(result);
     };
@@ -23,6 +32,11 @@ const ListUser = ({clients, isOpenedSettings, setState, setUserIp}) => {
         setData(sessionStorage.getItem(key))
     }
 
+=======
+        setUpdate(false)
+    };
+
+>>>>>>> caskey99
     fileReader.addEventListener('progress', (event) => { /* Процент загрузки json файла в console */
         if (event.loaded && event.total) {
             const percent = (event.loaded / event.total) * 100;
@@ -33,22 +47,37 @@ const ListUser = ({clients, isOpenedSettings, setState, setUserIp}) => {
     const handleOnChange = (event) => {
         event.preventDefault();
         const clients2 = event.target.files[0];
+<<<<<<< HEAD
         setFile(clients2);
         fileReader.readAsDataURL(clients2);
     }
 
+=======
+        fileReader.readAsDataURL(clients2);
+    }
+
+
+>>>>>>> caskey99
     return (
         <aside className="list-users">
             <div className="all-users">
                 <input type="checkbox" id="users1" name="users"/>
                 <label htmlFor="users1">Пользователи</label>
             </div>
+<<<<<<< HEAD
 
             {sessionStorage.length === 0
                 ?
                 "Выберите json файл"
                 :
                 (JSON.parse(sessionStorage.getItem(key))).map(element => <ItemUser key={element.ip} data={element} setUserIp={setUserIp}/>)
+=======
+            {sessionStorage.length === 0
+                ?
+                "выберите пользовтаеля"
+                :
+                (JSON.parse(sessionStorage.getItem(key))).map(element => <ItemUser key={element.ip} data={element}/>)
+>>>>>>> caskey99
             }
 
             <form>
