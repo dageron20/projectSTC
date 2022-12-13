@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 
-<<<<<<< HEAD
 const BottomDocument = ({userIp, valueDoc, sendMsg}) => {
     const [counter, setCounter] = useState(1);
 
@@ -14,15 +13,7 @@ const BottomDocument = ({userIp, valueDoc, sendMsg}) => {
             setCounter(counter + 1)
     }
 
-=======
-import {useDispatch, useSelector} from "react-redux";
-import {decrement, increment} from "../../toolkitRedux/toolkitSlice";
->>>>>>> caskey99
 
-const BottomDocument = ({valueDoc, sendMsg}) => {
-    const count = useSelector(state => state.toolkit.count)
-    const userIp = useSelector(state => state.toolkit.userIp)
-    const dispatch = useDispatch()
     return (
         <div className="bottom-document">
             <div className="left-menu">
@@ -31,17 +22,17 @@ const BottomDocument = ({valueDoc, sendMsg}) => {
             <div className="right-menu">
                 <p>Колличесвто отправок</p>
                 <div className='box-spinner'>
-                    <div className='in-num'> {count}</div>
-                    <div className="module-strip"/>
-                    <div className="module-minus" onClick={() => dispatch(decrement())}>
-                        <div className="minus"/>
+                    <div className='in-num'> {counter}</div>
+                    <div className="module-strip"></div>
+                    <div className="module-minus" onClick={handleClickMinus}>
+                        <div className="minus"></div>
                     </div>
-                    <div className="module-plus" onClick={() => dispatch(increment())}>
-                        <div className="plus"/>
+                    <div className="module-plus" onClick={handleClickPlus}>
+                        <div className="plus"></div>
                     </div>
                 </div>
                 {/*<button disabled className='btn-send'>Отправить</button>*/}
-                <button className='btn-send-true' onClick={() => {sendMsg(userIp, valueDoc)}}>
+                <button className='btn-send-true' onClick={() => sendMsg(userIp, valueDoc)}>
                                          <span>
                                             Отправить
                                          </span>
