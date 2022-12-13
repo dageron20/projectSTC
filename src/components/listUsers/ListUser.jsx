@@ -2,26 +2,17 @@ import React, {useEffect, useRef, useState} from "react";
 import ItemUser from "../itemUser/ItemUser";
 import { Buffer } from 'buffer';
 
-const ListUser = ({clients, isOpenedSettings, setState, setUserIp}) => {
+const ListUser = ({isOpenedSettings, setState}) => {
     const key = 'clients'
-    const [file, setFile] = useState();
-    const [fileurl, setFileurl] = useState();
-    const [jsonfile, setJsonfile] = useState();
+    const [update, setUpdate] = useState(true);
     const fileReader = new FileReader();
-    const [data, setData] = useState()
     fileReader.onloadend = () => {
-        setFileurl(fileReader.result);
         const obj = JSON.parse(JSON.stringify(fileReader.result));
         const json = Buffer.from(obj.substring(29), "base64").toString();
         const result = JSON.parse(json);
         sessionStorage.setItem(key, JSON.stringify(result))
-        getClients()
-        setJsonfile(result);
+        setUpdate(false)
     };
-
-    const getClients = () => {
-        setData(sessionStorage.getItem(key))
-    }
 
     fileReader.addEventListener('progress', (event) => { /* Процент загрузки json файла в console */
         if (event.loaded && event.total) {
@@ -33,9 +24,9 @@ const ListUser = ({clients, isOpenedSettings, setState, setUserIp}) => {
     const handleOnChange = (event) => {
         event.preventDefault();
         const clients2 = event.target.files[0];
-        setFile(clients2);
         fileReader.readAsDataURL(clients2);
     }
+
 
     return (
         <aside className="list-users">
@@ -43,12 +34,11 @@ const ListUser = ({clients, isOpenedSettings, setState, setUserIp}) => {
                 <input type="checkbox" id="users1" name="users"/>
                 <label htmlFor="users1">Пользователи</label>
             </div>
-
             {sessionStorage.length === 0
                 ?
-                "Выберите json файл"
+                "выберите пользовтаеля"
                 :
-                (JSON.parse(sessionStorage.getItem(key))).map(element => <ItemUser key={element.ip} data={element} setUserIp={setUserIp}/>)
+                (JSON.parse(sessionStorage.getItem(key))).map(element => <ItemUser key={element.ip} data={element}/>)
             }
 
             <form>

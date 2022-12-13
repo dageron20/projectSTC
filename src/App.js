@@ -1,13 +1,15 @@
 import React, {useEffect, useRef, useState} from "react";
 import './styles/index.css';
-import BottomDocument from "./components/BottomDocument/BottomDocument";
+import BottomDocument from "./components/BottomDocument";
 import ChooseDocument from "./components/chooseDocumentButton/ChooseDocument";
 import CurrentDocument from "./components/currentDocument/CurrentDocument";
-import ListUser from "./components/listUsers/ListUser";
+import ListUser from "./components/listUsers";
 import Messages from "./components/Messages/Messages";
 import ItemMessage from "./components/ItemMessage/ItemMessage";
 
-function App({events, clients}) {
+function App({clients}) {
+
+    const [isOpenedSettings, setIsOpenedSettings] = useState(false);
     const [isOpened, setIsOpened] = useState(false);
     function handleChangeOpened()  {
         setIsOpened((prevState) => {
@@ -20,24 +22,16 @@ function App({events, clients}) {
         })
     }
 
-    const [isOpenedSettings, setIsOpenedSettings] = useState(false);
-    const [userIp, setUserIp] = useState();
-    const [valueDoc, setValueDoc] = useState()
-
-    const [data, setData] = useState(null);
-    const [obj, setObj] = useState();
-
     const ws = useRef();
-    const [connected, setConnected] = useState(false);
 
     useEffect(() => {
-        ws.current = new WebSocket("ws://192.168.0.103:9399");
+        ws.current = new WebSocket("ws://192.168.31.14:9399");
         ws.current.onopen = () => {
-            setConnected(true);
             console.log("ws opened");
         }
         ws.current.onmessage = (event) => {
-            console.log('С сервера пришло сообщение:', event.data)
+            // console.log('С сервера пришло сообщение:', event.data)
+
             const lastObj = JSON.parse(localStorage.getItem(localStorage.length))
             const obj = JSON.parse(event.data)
             if(lastObj === null)
@@ -46,6 +40,7 @@ function App({events, clients}) {
                 obj.id = lastObj.id + 1
             localStorage.setItem(obj.id, JSON.stringify(obj))
             setData(obj)
+
         }
 
         ws.current.onclose = () => {
@@ -55,17 +50,11 @@ function App({events, clients}) {
         ws.current.onerror = () => {
             console.log('Socket ошибка')
         }
-    }, [])
-
-    useEffect(() => {
     }, [data])
 
+
     const sendMsg = (userIp, valueDoc) => {
-        const date = new Date();
-        const hour = date.getHours();
-        const minutes = date.getMinutes();
-        const time = hour + ":" + minutes;
-        console.log(time);
+
         const obj = {
             method: "message",
             ipRecipient : userIp,
@@ -93,7 +82,11 @@ function App({events, clients}) {
                                             :
                                             <ChooseDocument qwe={handleChangeOpened} />
                                     }
+
                                     <BottomDocument userIp={userIp} valueDoc={valueDoc} sendMsg={sendMsg} />
+
+                                    <BottomDocument  valueDoc={valueDoc} sendMsg={sendMsg} />
+
                                 </div>
                                 <Messages />
                             </div>
@@ -104,6 +97,7 @@ function App({events, clients}) {
         </>
 
     );
+
 }
 
 export default App;
