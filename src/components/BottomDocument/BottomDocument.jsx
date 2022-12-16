@@ -16,7 +16,7 @@ const BottomDocument = ({wsSendMsg}) => {
         const time = hour + ":" + minutes;
         console.log(time);
         const obj = {
-            method: "message",
+            method: "sendMessage",
             ipRecipient : userIp,
             ipSender: '',
             ipCurr: '',

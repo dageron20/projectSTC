@@ -21,7 +21,10 @@ const toolkitSlice = createSlice({
         },
         setValueDoc(state, action){
             state.valueDoc = action.payload
-        }
+        },
+        // writeValueDoc(state, action){
+        //
+        // }
     }
 })
 
