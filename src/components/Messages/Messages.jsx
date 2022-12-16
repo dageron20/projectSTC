@@ -4,18 +4,19 @@ import ItemMessage from "../ItemMessage/ItemMessage";
 const os = require('os');
 
 
-const Messages = () => {
+const Messages = ({OpenDoc, curMessage}) => {
 
     return (
-        <aside className="list-users">
-            <div>
-                <h1 className="all-message">Входящие сообщения</h1>
+        <aside className="messages-list">
+            <h1 className="messages-list-header">Входящие сообщения</h1>
+            <div className="messages-list-items">
                 {
                     localStorage.length === 0
                     ?
                         "пока пусто"
                     :
-                        (new Array(localStorage.length).fill().map((e, i) => i + 1)).map(i => <ItemMessage message={JSON.parse(localStorage.getItem(i))} key={JSON.parse(localStorage.getItem(i)).id} />)
+                        (new Array(localStorage.length).fill().map((e, i) => i + 1))
+                            .map(i => <ItemMessage curMessage={curMessage} OpenDoc={OpenDoc} message={JSON.parse(localStorage.getItem(i))} key={JSON.parse(localStorage.getItem(i)).id} />)
                 }
             </div>
         </aside>

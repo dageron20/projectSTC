@@ -1,13 +1,19 @@
 import React from "react";
+import {useDispatch} from "react-redux";
+import {setValueDoc} from "../../toolkitRedux/toolkitSlice";
 
-const CurrentDocument = ({qwe, setValueDoc}) => {
+const CurrentDocument = ({OpenDoc,curMessage }) => {
+
+    const dispatch = useDispatch()
+
+    console.log("THIS IS CUR MESSAGE: ",curMessage)
 
 
     return (
         <div className="current-document">
             <div className="current-document-title">
                 <h3>Название</h3>
-                <div onClick={qwe} className="icon">
+                <div onClick={OpenDoc} className="icon">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fillRule="evenodd" clipRule="evenodd" d="M7.29409 8L0 0.705911L0.705911 0L8 7.29409L15.2941 0L16 0.705911L8.70591 8L16 15.2941L15.2941 16L8 8.70591L0.705911 16L0 15.2941L7.29409 8Z" fill="#45494D"/>
                     </svg>
@@ -16,7 +22,7 @@ const CurrentDocument = ({qwe, setValueDoc}) => {
             <div className="current-document-container">
                 <div className="current-document-container-identity">
                     <span>идентификатор распоряжения</span>
-                    <input type="text" placeholder="Placeholder" onChange={(e) => {setValueDoc(e.target.value)}}/>
+                    <input type="text" id="message" placeholder="Placeholder" onChange={(e) => {dispatch(setValueDoc(e.target.value))}}/>
                     <span className="identity-subtitle">Текст пояснения</span>
                 </div>
                 <div className="current-document-container-project">
