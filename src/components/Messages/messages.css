@@ -1,4 +1,4 @@
-.list-messages {
+.messages-list {
   display: flex;
   flex-direction: column;
   position: relative;
@@ -6,9 +6,8 @@
   border-right: 1px solid #C8CACC;
   overflow-y: scroll;
 }
-
-.all-message {
-  height: 50px;
+.messages-list-header {
+  min-height: 50px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -17,6 +16,10 @@
   -webkit-user-select: none;
   font-family: "Inter-SemiBold", sans-serif;
   font-weight: 600;
+}
+.messages-list-items {
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 /*# sourceMappingURL=messages.css.map */

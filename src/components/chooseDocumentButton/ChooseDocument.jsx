@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import CurrentDocument from "../currentDocument/CurrentDocument";
 
-const ChooseDocument = ({qwe, opened}) => {
+const ChooseDocument = ({OpenDoc}) => {
     return (
         <>
             <div className="choose-document">
@@ -11,7 +11,7 @@ const ChooseDocument = ({qwe, opened}) => {
                 <div className="choose-document-description">
                     Для отправки документа откройте документы и выберите пользоватея
                 </div>
-                <button onClick={qwe} className="choose-document-button">
+                <button onClick={OpenDoc} className="choose-document-button">
                     Документы
                 </button>
             </div>

@@ -23,22 +23,13 @@ server.on('connection', function connection(ws, req) {
                 break
         }
     })
- // ws.send('ты успешно зашел')
-// const ip = req.socket.remoteAddress.replace(/^.*:/, '');
-//console.log('IP:', ip)
-// console.log(': ', server.clients)
 })
 
 
 const sendMsgToIp = (ws, req, msg) => {
     const ip = req.socket.remoteAddress.replace(/^.*:/, '');
     msg.ipSender = ip
-// console.log(`IpMsg:${msg.ip} IpCurr: ${ip}`)
     console.log("sendMsgToIp")
-// console.log(ws);
-// console.log(req.headers.origin);
-// console.log(msg);
-// console.log(clients);
     const wss = clients[`http://${msg.ipRecipient}:8080`];
     console.log("CLIENTS: ", clients)
     console.log("==================================================================")
