@@ -5,13 +5,15 @@ import ChooseDocument from "./components/chooseDocumentButton/ChooseDocument";
 import CurrentDocument from "./components/currentDocument/CurrentDocument";
 import ListUser from "./components/listUsers/ListUser";
 import Messages from "./components/Messages/Messages";
+import {useDispatch, useSelector} from "react-redux";
+import {setValueMsg} from "./toolkitRedux/toolkitSlice";
+import {WebsocketClient} from "./WebsocketClient";
 
 
 function App({}) {
 
     const [isOpenedSettings, setIsOpenedSettings] = useState(false);
     const [isOpened, setIsOpened] = useState(false);
-    const [data, setData] = useState(null);
 
     const [curMessage, setCurMessage] = useState(null);
 
@@ -26,37 +28,17 @@ function App({}) {
         })
     }
 
-    const ws = useRef();
+    let ws = new WebsocketClient();
 
-    useEffect(() => {
-        ws.current = new WebSocket("ws://192.168.0.103:9399");
-        ws.current.onopen = () => {
-            console.log("ws opened");
-        }
-        ws.current.onmessage = (event) => {
-            // console.log('С сервера пришло сообщение:', event.data)
-            const lastObj = JSON.parse(localStorage.getItem(localStorage.length))
-            const obj = JSON.parse(event.data)
-            if(lastObj === null)
-                obj.id = 1
-            else
-                obj.id = lastObj.id + 1
-            localStorage.setItem(obj.id, JSON.stringify(obj))
-            setData(obj)
-        }
 
-        ws.current.onclose = () => {
-            console.log("ws closed");
-        }
+    ws.onOpen();
 
-        ws.current.onerror = () => {
-            console.log('Socket ошибка')
-        }
-    }, [data])
+    ws.onMessage();
 
-    const wsSendMsg = (obj) =>{
-        ws.current.send(JSON.stringify(obj));
-    }
+    ws.onClose();
+
+    ws.onError();
+
 
     return (
         <>
@@ -73,7 +55,7 @@ function App({}) {
                                             :
                                             <ChooseDocument OpenDoc={handleChangeOpened} />
                                     }
-                                    <BottomDocument wsSendMsg={wsSendMsg} />
+                                    <BottomDocument ws={ws} />
                                 </div>
                                 <Messages OpenDoc={handleChangeOpened} curMessage={setCurMessage} />
                             </div>

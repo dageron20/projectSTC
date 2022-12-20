@@ -5,6 +5,8 @@ const req = require("websocket/lib/WebSocketClient");
 const server = new WebSocketServer({ port: 9399 })
 
 const clients = {};
+const messages = [];
+var counter = 0;
 
 server.on('connection', function connection(ws, req) {
     clients[req.headers.origin] = ws
@@ -12,12 +14,16 @@ server.on('connection', function connection(ws, req) {
     ws.on('message', msg => {
         msg = JSON.parse(msg)
         const ip = req.socket.remoteAddress.replace(/^.*:/, '');
+        console.log("ip"+ ip)
         msg.ipCurr = ip
-        console.log(msg)
         switch (msg.method) {
-            case "message":
-                console.log('message ')
+            case "sendMessage":
+                console.log('sendMessage')
                 sendMsgToIp(ws, req, msg)
+                break
+            case "getMessage":
+                console.log('getMessage')
+                getMsgToIp(ws, req)
                 break
             default :
                 break
@@ -29,11 +35,25 @@ server.on('connection', function connection(ws, req) {
 const sendMsgToIp = (ws, req, msg) => {
     const ip = req.socket.remoteAddress.replace(/^.*:/, '');
     msg.ipSender = ip
-    console.log("sendMsgToIp")
-    const wss = clients[`http://${msg.ipRecipient}:8080`];
-    console.log("CLIENTS: ", clients)
-    console.log("==================================================================")
-    console.log("IP RECIPIENT: ", msg.ipRecipient)
-    console.log(wss)
-    wss?.send(JSON.stringify(msg));
+    msg.ipRecipient.map(
+        ip => {
+            const wss = clients[`http://${ip}:8080`];
+            msg.id = counter;
+            wss?.send(JSON.stringify(msg));
+            messages[counter] = msg;
+            counter++;
+        }
+    )
+}
+
+const getMsgToIp = (ws, req) => {
+    if(messages.length) {
+        messages.map(msg =>console.log(msg));
+        const ip = req.socket.remoteAddress.replace(/^.*:/, '')
+        const msgToIp = messages.filter(msg => msg.ipRecipient[0] === ip);
+        const wss = clients[`http://${ip}:8080`];
+        msgToIp.map(msg => wss?.send(JSON.stringify(msg)));
+        msgToIp.map(msg => console.log(msg));
+    }
+    console.log("getMsgToIp")
 }

@@ -1,13 +1,10 @@
 import React from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {setValueDoc} from "../../toolkitRedux/toolkitSlice";
 
-const CurrentDocument = ({OpenDoc,curMessage }) => {
+const CurrentDocument = ({OpenDoc }) => {
 
     const dispatch = useDispatch()
-
-    console.log("THIS IS CUR MESSAGE: ",curMessage)
-
 
     return (
         <div className="current-document">

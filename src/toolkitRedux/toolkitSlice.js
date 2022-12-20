@@ -3,27 +3,27 @@ import {createSlice} from "@reduxjs/toolkit";
 const toolkitSlice = createSlice({
     name: "toolkit",
     initialState: {
-        count: 0,
-        userIp: '',
-        valueDoc: ''
+        userIp: [],
+        valueDoc: '',
+        valuesMsg: [],
+        currentMessage: '',
     },
     reducers: {
-        increment(state) {
-            if(state.count  < 100)
-                state.count = state.count + 1
-        },
-        decrement(state) {
-            if(state.count  > 0)
-                state.count = state.count - 1
-        },
         setUserIp(state, action){
-            state.userIp = action.payload
+            state.userIp.push(action.payload);
+
         },
         setValueDoc(state, action){
             state.valueDoc = action.payload
+        },
+        setValueMsg(state, action) {
+            state.valuesMsg.push(action.payload);
+        },
+        setCurrentMessage(state, action) {
+            state.currentMessage= action.payload;
         }
     }
 })
 
 export default toolkitSlice.reducer
-export const {increment, decrement, setUserIp, setValueDoc} = toolkitSlice.actions
+export const {setUserIp, setValueDoc, setValueMsg, setCurrentMessage} = toolkitSlice.actions

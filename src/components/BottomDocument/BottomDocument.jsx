@@ -1,13 +1,22 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
+import {useSelector} from "react-redux";
+import img from "../img/Vector.svg";
 
-import {useDispatch, useSelector} from "react-redux";
-import {decrement, increment} from "../../toolkitRedux/toolkitSlice";
-
-const BottomDocument = ({wsSendMsg}) => {
-    const count = useSelector(state => state.toolkit.count)
+const BottomDocument = ({ws}) => {
     const userIp = useSelector(state => state.toolkit.userIp)
     const valueDoc = useSelector(state => state.toolkit.valueDoc)
-    const dispatch = useDispatch()
+
+    const [counter, setCounter] = useState(1);
+
+    const handleClickMinus = () => {
+        if(counter > 0)
+            setCounter(counter - 1)
+    }
+    const handleClickPlus = () => {
+        if(counter < 100)
+            setCounter(counter + 1)
+    }
+
 
     const sendMsg = (userIp, valueDoc) => {
         const date = new Date();
@@ -16,7 +25,7 @@ const BottomDocument = ({wsSendMsg}) => {
         const time = hour + ":" + minutes;
         console.log(time);
         const obj = {
-            method: "message",
+            method: "sendMessage",
             ipRecipient : userIp,
             ipSender: '',
             ipCurr: '',
@@ -24,7 +33,7 @@ const BottomDocument = ({wsSendMsg}) => {
             message: valueDoc,
             timestamp: time,
         }
-        wsSendMsg(obj)
+        ws.getWebsocketClient().send(JSON.stringify(obj));
     }
 
     return (
@@ -35,12 +44,12 @@ const BottomDocument = ({wsSendMsg}) => {
             <div className="right-menu">
                 <p>Колличесвто отправок</p>
                 <div className='box-spinner'>
-                    <div className='in-num'> {count}</div>
+                    <div className='in-num'> {counter}</div>
                     <div className="module-strip"/>
-                    <div className="module-minus" onClick={() => dispatch(decrement())}>
+                    <div className="module-minus" onClick={() => handleClickMinus()}>
                         <div className="minus"/>
                     </div>
-                    <div className="module-plus" onClick={() => dispatch(increment())}>
+                    <div className="module-plus" onClick={() => handleClickPlus()}>
                         <div className="plus"/>
                     </div>
                 </div>
@@ -49,9 +58,7 @@ const BottomDocument = ({wsSendMsg}) => {
                                          <span>
                                             Отправить
                                          </span>
-                    <svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0 14L14.8371 7L0 0V5.44444L10.598 7L0 8.55556V14Z" fill="#FCFCFD"/>
-                    </svg>
+                    <img src={img} alt="Отправка документа"/>
                 </button>
             </div>
         </div>
